@@ -10,10 +10,96 @@ apis:
   - Industrial
   - Digital Twin
   image: https://raw.githubusercontent.com/api-evangelist/siemens-mindsphere/refs/heads/main/image.png
-  humanURL: https://developer.mindsphere.io/
+  humanURL: https://documentation.mindsphere.io/MindSphere/apis/index.html
   baseURL: https://gateway.eu1.mindsphere.io/api
   properties:
-  - url: https://developer.mindsphere.io/
+  - url: https://documentation.mindsphere.io/MindSphere/apis/index.html
     type: Documentation
+  - url: https://documentation.mindsphere.io/MindSphere/apis/index.html
+    type: Reference
   description: >-
     Siemens MindSphere provides industrial IoT platform APIs for machine connectivity, time-series data storage, asset management, and edge analytics. REST and OData APIs enable telemetry ingestion, fleet monitoring, predictive maintenance, and digital twin modeling for manufacturing equipment.
+
+- aid: siemens-mindsphere:siemens-mindsphere-asset-management-api
+  name: Siemens MindSphere Asset Management API
+  tags:
+  - Manufacturing
+  - IoT
+  - Industrial
+  - Asset Management
+  - Digital Twin
+  image: https://raw.githubusercontent.com/api-evangelist/siemens-mindsphere/refs/heads/main/image.png
+  humanURL: https://documentation.mindsphere.io/MindSphere/apis/advanced-assetmanagement/api-assetmanagement-overview.html
+  baseURL: https://gateway.eu1.mindsphere.io/api/assetmanagement
+  properties:
+  - url: https://documentation.mindsphere.io/MindSphere/apis/advanced-assetmanagement/api-assetmanagement-overview.html
+    type: Documentation
+  description: >-
+    The MindSphere Asset Management API enables creating and managing assets, defining aspects and asset types, configuring data models, and handling connectivity for IoT devices. Supports hierarchical asset structures for digital twin modeling.
+
+- aid: siemens-mindsphere:siemens-mindsphere-iot-timeseries-api
+  name: Siemens MindSphere IoT Time Series API
+  tags:
+  - Manufacturing
+  - IoT
+  - Industrial
+  - Time Series
+  - Telemetry
+  image: https://raw.githubusercontent.com/api-evangelist/siemens-mindsphere/refs/heads/main/image.png
+  humanURL: https://documentation.mindsphere.io/MindSphere/apis/iot-timeseries/api-timeseries-overview.html
+  baseURL: https://gateway.eu1.mindsphere.io/api/iottimeseries
+  properties:
+  - url: https://documentation.mindsphere.io/MindSphere/apis/iot-timeseries/api-timeseries-overview.html
+    type: Documentation
+  description: >-
+    The MindSphere IoT Time Series API enables storing, querying, and retrieving time-series telemetry data from industrial equipment. Supports high-frequency data ingestion, bulk imports, and time-range queries for sensor and machine data.
+
+- aid: siemens-mindsphere:siemens-mindsphere-mindconnect-api
+  name: Siemens MindSphere MindConnect API
+  tags:
+  - Manufacturing
+  - IoT
+  - Industrial
+  - Connectivity
+  - MQTT
+  image: https://raw.githubusercontent.com/api-evangelist/siemens-mindsphere/refs/heads/main/image.png
+  humanURL: https://documentation.mindsphere.io/MindSphere/apis/connectivity-mindconnectapi/api-mindconnectapi-overview.html
+  baseURL: https://gateway.eu1.mindsphere.io/api/mindconnect
+  properties:
+  - url: https://documentation.mindsphere.io/MindSphere/apis/connectivity-mindconnectapi/api-mindconnectapi-overview.html
+    type: Documentation
+  description: >-
+    The MindSphere MindConnect API provides device connectivity for ingesting telemetry data from industrial equipment into the MindSphere platform. Supports REST and MQTT protocols for hardware agents including MindConnect Nano, IoT2040, IoT2050, and software-based agents.
+
+- aid: siemens-mindsphere:siemens-mindsphere-integrated-data-lake-api
+  name: Siemens MindSphere Integrated Data Lake API
+  tags:
+  - Manufacturing
+  - IoT
+  - Industrial
+  - Data Lake
+  - OData
+  image: https://raw.githubusercontent.com/api-evangelist/siemens-mindsphere/refs/heads/main/image.png
+  humanURL: https://documentation.mindsphere.io/MindSphere/apis/integrated-data-lake/api-integrated-data-lake-overview.html
+  baseURL: https://gateway.eu1.mindsphere.io/api/datalake
+  properties:
+  - url: https://documentation.mindsphere.io/MindSphere/apis/integrated-data-lake/api-integrated-data-lake-overview.html
+    type: Documentation
+  description: >-
+    The MindSphere Integrated Data Lake API provides storage and retrieval of large-scale industrial data. Supports OData contracts for standardized data access, cross-account data sharing, and bulk data transformation operations.
+
+common:
+- url: https://documentation.mindsphere.io/MindSphere/app-development/overview.html
+  type: Portal
+- url: https://documentation.mindsphere.io/MindSphere/apis/index.html
+  type: Documentation
+- url: https://documentation.mindsphere.io/MindSphere/app-development/overview.html
+  type: GettingStarted
+- url: https://github.com/mindsphere
+  type: GitHubOrganization
+
+maintainers:
+- name: Kin Lane
+  email: kin@apievangelist.com
+
+modified: '2026-03-18'
