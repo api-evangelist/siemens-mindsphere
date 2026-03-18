@@ -1,0 +1,19 @@
+aid: siemens-mindsphere
+url: https://raw.githubusercontent.com/api-evangelist/siemens-mindsphere/refs/heads/main/apis.yml
+apis:
+- aid: siemens-mindsphere:siemens-mindsphere-api
+  name: Siemens MindSphere Industrial IoT API
+  tags:
+  - Manufacturing
+  - IoT
+  - OData
+  - Industrial
+  - Digital Twin
+  image: https://raw.githubusercontent.com/api-evangelist/siemens-mindsphere/refs/heads/main/image.png
+  humanURL: https://developer.mindsphere.io/
+  baseURL: https://gateway.eu1.mindsphere.io/api
+  properties:
+  - url: https://developer.mindsphere.io/
+    type: Documentation
+  description: >-
+    Siemens MindSphere provides industrial IoT platform APIs for machine connectivity, time-series data storage, asset management, and edge analytics. REST and OData APIs enable telemetry ingestion, fleet monitoring, predictive maintenance, and digital twin modeling for manufacturing equipment.
