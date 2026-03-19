@@ -1,0 +1,303 @@
+openapi: 3.1.0
+info:
+  title: Siemens MindSphere IoT Time Series API
+  description: >-
+    The MindSphere IoT Time Series API enables storing, querying, and retrieving
+    time-series telemetry data from industrial equipment and IoT assets. Supports
+    high-frequency data ingestion (up to 1 Hz), bulk imports, and time-range queries
+    for sensor and machine data organized by asset and aspect.
+  version: "3.0"
+  contact:
+    name: Siemens MindSphere Developer Support
+    url: https://documentation.mindsphere.io/MindSphere/apis/iot-timeseries/api-timeseries-overview.html
+servers:
+  - url: https://gateway.eu1.mindsphere.io/api/iottimeseries/v3
+    description: MindSphere EU1 Region
+
+security:
+  - BearerAuth: []
+
+tags:
+  - name: Timeseries
+    description: Time-series data read and write operations
+
+paths:
+  /timeseries:
+    put:
+      operationId: putMultipleTimeseries
+      summary: Ingest time-series data for multiple assets/aspects
+      description: >-
+        Creates or updates time-series data for multiple asset-aspect combinations
+        in a single request. Each entry specifies an assetId, aspectName, and array
+        of timestamped data points.
+      tags:
+        - Timeseries
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/TimeseriesInput'
+      responses:
+        '204':
+          description: Data ingested successfully (no content)
+        '400':
+          description: Validation error in request payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden — insufficient scope
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /timeseries/{assetId}/{aspectName}:
+    put:
+      operationId: putTimeseries
+      summary: Ingest time-series data for a single asset aspect
+      description: >-
+        Creates or updates time-series data for a specific asset and aspect.
+        Each data point must include a _time field (ISO 8601 UTC) and values
+        for aspect variables.
+      tags:
+        - Timeseries
+      parameters:
+        - $ref: '#/components/parameters/AssetId'
+        - $ref: '#/components/parameters/AspectName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/TimeseriesDataPoint'
+      responses:
+        '204':
+          description: Data ingested successfully
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Asset or aspect not found
+
+    get:
+      operationId: getTimeseries
+      summary: Query time-series data for an asset aspect
+      description: >-
+        Retrieves time-series data for a specific asset and aspect within a
+        time range. Supports time range queries, field selection, and result
+        limiting. Data is returned ordered by timestamp ascending.
+      tags:
+        - Timeseries
+      parameters:
+        - $ref: '#/components/parameters/AssetId'
+        - $ref: '#/components/parameters/AspectName'
+        - name: from
+          in: query
+          required: true
+          description: Start of time range (ISO 8601 UTC)
+          schema:
+            type: string
+            format: date-time
+          example: "2026-01-01T00:00:00Z"
+        - name: to
+          in: query
+          required: true
+          description: End of time range (ISO 8601 UTC)
+          schema:
+            type: string
+            format: date-time
+          example: "2026-01-01T01:00:00Z"
+        - name: limit
+          in: query
+          required: false
+          description: Maximum number of data points to return (max 2000)
+          schema:
+            type: integer
+            default: 2000
+            maximum: 2000
+        - name: select
+          in: query
+          required: false
+          description: Comma-separated list of variable names to include
+          schema:
+            type: string
+          example: "temperature,pressure"
+        - name: sort
+          in: query
+          required: false
+          description: Sort order by _time
+          schema:
+            type: string
+            enum: [asc, desc]
+            default: asc
+        - name: latestValue
+          in: query
+          required: false
+          description: Return only the most recent data point
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: Time-series data points
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TimeseriesDataPoint'
+        '400':
+          description: Invalid query parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Asset or aspect not found
+
+    delete:
+      operationId: deleteTimeseries
+      summary: Delete time-series data for an asset aspect
+      description: >-
+        Deletes all time-series data within an hourly-aligned time range for a
+        specific asset and aspect. The time range must align to UTC hour boundaries.
+      tags:
+        - Timeseries
+      parameters:
+        - $ref: '#/components/parameters/AssetId'
+        - $ref: '#/components/parameters/AspectName'
+        - name: from
+          in: query
+          required: true
+          description: Start of hourly-aligned range (ISO 8601 UTC)
+          schema:
+            type: string
+            format: date-time
+          example: "2026-01-01T00:00:00Z"
+        - name: to
+          in: query
+          required: true
+          description: End of hourly-aligned range (ISO 8601 UTC)
+          schema:
+            type: string
+            format: date-time
+          example: "2026-01-01T01:00:00Z"
+      responses:
+        '204':
+          description: Data deleted successfully
+        '400':
+          description: Invalid time range (not hour-aligned or invalid format)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: MindSphere Bearer token from OAuth2 token endpoint
+
+  parameters:
+    AssetId:
+      name: assetId
+      in: path
+      required: true
+      description: Unique MindSphere asset identifier (UUID)
+      schema:
+        type: string
+        format: uuid
+      example: "5d7e59d0-8c94-4bce-8a0c-3a7fcc9a1234"
+    AspectName:
+      name: aspectName
+      in: path
+      required: true
+      description: Aspect name (must match asset type aspect configuration)
+      schema:
+        type: string
+      example: "EnvironmentData"
+
+  schemas:
+    TimeseriesInput:
+      type: object
+      required:
+        - assetId
+        - aspectName
+        - data
+      properties:
+        assetId:
+          type: string
+          format: uuid
+        aspectName:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimeseriesDataPoint'
+
+    TimeseriesDataPoint:
+      type: object
+      required:
+        - _time
+      properties:
+        _time:
+          type: string
+          format: date-time
+          description: ISO 8601 UTC timestamp for the data point
+          example: "2026-01-01T00:00:00.000Z"
+      additionalProperties:
+        description: >-
+          Variable values keyed by variable name. Variable types are defined
+          in the aspect configuration (DOUBLE, LONG, BOOLEAN, STRING, BIG_STRING,
+          INT, TIMESTAMP).
+        oneOf:
+          - type: number
+          - type: boolean
+          - type: string
+          - type: "null"
+
+    ErrorResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique error identifier
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              message:
+                type: string

@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gateway.eu1.mindsphere.io/schemas/timeseries",
+  "title": "MindSphere Time Series Data Point",
+  "description": "A timestamped telemetry data point for an asset aspect in MindSphere IoT Time Series",
+  "type": "object",
+  "properties": {
+    "_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 UTC timestamp for the measurement",
+      "examples": ["2026-01-15T08:30:00.000Z"]
+    }
+  },
+  "required": ["_time"],
+  "additionalProperties": {
+    "description": "Variable measurement value. Key is the variable name as defined in the aspect type. Null indicates a quality issue or missing data.",
+    "oneOf": [
+      {
+        "type": "number",
+        "description": "Numeric measurement (DOUBLE, LONG, INT types)"
+      },
+      {
+        "type": "string",
+        "description": "String measurement (STRING, BIG_STRING, TIMESTAMP types)"
+      },
+      {
+        "type": "boolean",
+        "description": "Boolean measurement (BOOLEAN type)"
+      },
+      {
+        "type": "null",
+        "description": "Missing or invalid data point"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "_time": "2026-01-15T08:30:00.000Z",
+      "temperature": 72.5,
+      "pressure": 1.023,
+      "vibration": 0.12,
+      "operationalStatus": true,
+      "errorCode": null
+    }
+  ]
+}

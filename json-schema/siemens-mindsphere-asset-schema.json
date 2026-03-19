@@ -1,0 +1,160 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gateway.eu1.mindsphere.io/schemas/asset",
+  "title": "MindSphere Asset",
+  "description": "An industrial IoT asset (digital twin instance) in the MindSphere Asset Management service",
+  "type": "object",
+  "properties": {
+    "assetId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique asset identifier (UUID)"
+    },
+    "name": {
+      "type": "string",
+      "description": "Asset display name",
+      "maxLength": 128
+    },
+    "externalId": {
+      "type": "string",
+      "description": "External identifier for integration with source systems",
+      "maxLength": 255
+    },
+    "description": {
+      "type": "string",
+      "description": "Asset description",
+      "maxLength": 2048
+    },
+    "typeId": {
+      "type": "string",
+      "description": "Asset type identifier (tenant.name format)",
+      "examples": ["tenant.PumpType", "core.BasicAsset"]
+    },
+    "parentId": {
+      "type": ["string", "null"],
+      "format": "uuid",
+      "description": "Parent asset UUID; null for root assets"
+    },
+    "timezone": {
+      "type": "string",
+      "description": "IANA timezone identifier for this asset",
+      "examples": ["Europe/Berlin", "America/Chicago", "Asia/Tokyo"]
+    },
+    "twinType": {
+      "type": "string",
+      "enum": ["performance", "simulation", "shop_floor"],
+      "description": "Digital twin modeling type"
+    },
+    "location": {
+      "$ref": "#/$defs/Location"
+    },
+    "variables": {
+      "type": "array",
+      "description": "Static configuration variables for this asset",
+      "items": {
+        "$ref": "#/$defs/VariableValue"
+      }
+    },
+    "aspects": {
+      "type": "array",
+      "description": "Aspect instances associated with this asset",
+      "items": {
+        "$ref": "#/$defs/AspectRef"
+      }
+    },
+    "etag": {
+      "type": "integer",
+      "description": "ETag version for optimistic locking",
+      "minimum": 0
+    },
+    "tenantId": {
+      "type": "string",
+      "description": "MindSphere tenant identifier"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the asset was created"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of last modification"
+    }
+  },
+  "required": ["assetId", "name", "typeId"],
+  "$defs": {
+    "Location": {
+      "type": "object",
+      "description": "Geographic location of the physical asset",
+      "properties": {
+        "country": {
+          "type": "string",
+          "description": "ISO 3166-1 alpha-2 country code",
+          "pattern": "^[A-Z]{2}$"
+        },
+        "region": {
+          "type": "string"
+        },
+        "locality": {
+          "type": "string",
+          "description": "City or locality"
+        },
+        "streetAddress": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        },
+        "latitude": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
+        },
+        "longitude": {
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
+        },
+        "altitude": {
+          "type": "number",
+          "description": "Altitude in meters above sea level"
+        }
+      }
+    },
+    "VariableValue": {
+      "type": "object",
+      "description": "A named variable value for asset configuration",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "description": "Variable value — type depends on aspect variable definition",
+          "oneOf": [
+            {"type": "number"},
+            {"type": "string"},
+            {"type": "boolean"},
+            {"type": "null"}
+          ]
+        }
+      },
+      "required": ["name", "value"]
+    },
+    "AspectRef": {
+      "type": "object",
+      "description": "Reference to an aspect associated with this asset",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Aspect instance name on this asset"
+        },
+        "aspectTypeId": {
+          "type": "string",
+          "description": "Aspect type identifier"
+        }
+      },
+      "required": ["name", "aspectTypeId"]
+    }
+  }
+}

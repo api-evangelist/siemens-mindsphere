@@ -34,6 +34,8 @@ apis:
   properties:
   - url: https://documentation.mindsphere.io/MindSphere/apis/advanced-assetmanagement/api-assetmanagement-overview.html
     type: Documentation
+  - url: openapi/siemens-mindsphere-asset-management-openapi.yml
+    type: OpenAPI
   description: >-
     The MindSphere Asset Management API enables creating and managing assets, defining aspects and asset types, configuring data models, and handling connectivity for IoT devices. Supports hierarchical asset structures for digital twin modeling.
 
@@ -51,6 +53,8 @@ apis:
   properties:
   - url: https://documentation.mindsphere.io/MindSphere/apis/iot-timeseries/api-timeseries-overview.html
     type: Documentation
+  - url: openapi/siemens-mindsphere-iot-timeseries-openapi.yml
+    type: OpenAPI
   description: >-
     The MindSphere IoT Time Series API enables storing, querying, and retrieving time-series telemetry data from industrial equipment. Supports high-frequency data ingestion, bulk imports, and time-range queries for sensor and machine data.
 
@@ -97,6 +101,12 @@ common:
   type: GettingStarted
 - url: https://github.com/mindsphere
   type: GitHubOrganization
+- url: json-schema/siemens-mindsphere-asset-schema.json
+  type: JSONSchema
+- url: json-schema/siemens-mindsphere-timeseries-schema.json
+  type: JSONSchema
+- url: json-ld/siemens-mindsphere-context.jsonld
+  type: JSONLDContext
 
 maintainers:
 - name: Kin Lane

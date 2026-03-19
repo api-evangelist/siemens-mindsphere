@@ -1,0 +1,83 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "mindsphere": "https://gateway.eu1.mindsphere.io/vocab/",
+    "sosa": "http://www.w3.org/ns/sosa/",
+    "ssn": "http://www.w3.org/ns/ssn/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+
+    "Asset": "schema:Thing",
+    "AssetType": "schema:Class",
+    "AspectType": "sosa:ObservableProperty",
+    "TimeSeriesDataPoint": "sosa:Observation",
+    "Location": "schema:Place",
+    "VariableDefinition": "sosa:ObservableProperty",
+
+    "assetId": "@id",
+    "name": "schema:name",
+    "description": "schema:description",
+    "externalId": "schema:identifier",
+    "typeId": {
+      "@id": "schema:additionalType",
+      "@type": "@id"
+    },
+    "parentId": {
+      "@id": "schema:isPartOf",
+      "@type": "@id"
+    },
+    "timezone": "schema:temporalCoverage",
+    "twinType": "mindsphere:twinType",
+    "tenantId": "mindsphere:tenantId",
+    "etag": "mindsphere:etag",
+    "createdAt": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "updatedAt": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+
+    "location": {
+      "@id": "schema:location",
+      "@type": "schema:Place"
+    },
+    "latitude": {
+      "@id": "geo:lat",
+      "@type": "xsd:double"
+    },
+    "longitude": {
+      "@id": "geo:long",
+      "@type": "xsd:double"
+    },
+    "altitude": {
+      "@id": "geo:alt",
+      "@type": "xsd:double"
+    },
+    "country": "schema:addressCountry",
+    "locality": "schema:addressLocality",
+    "region": "schema:addressRegion",
+    "postalCode": "schema:postalCode",
+    "streetAddress": "schema:streetAddress",
+
+    "aspects": {
+      "@id": "sosa:observes",
+      "@type": "@id"
+    },
+    "variables": "sosa:hasResult",
+    "aspectTypeId": {
+      "@id": "sosa:observedProperty",
+      "@type": "@id"
+    },
+
+    "_time": {
+      "@id": "sosa:resultTime",
+      "@type": "xsd:dateTime"
+    },
+    "dataType": "schema:dataType",
+    "unit": "schema:unitCode",
+    "value": "sosa:hasSimpleResult"
+  }
+}
