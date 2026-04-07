@@ -18,15 +18,12 @@ security:
   - BearerAuth: []
 
 tags:
-  - name: Assets
-    description: Asset instance management
-  - name: Asset Types
-    description: Asset type definition management
   - name: Aspect Types
     description: Aspect type (data model template) management
-  - name: Aspects
-    description: Asset aspect instance management
-
+  - name: Asset Types
+    description: Asset type definition management
+  - name: Assets
+    description: Asset instance management
 paths:
   /assets:
     get:
