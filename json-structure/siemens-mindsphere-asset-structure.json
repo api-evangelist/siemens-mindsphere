@@ -1,0 +1,75 @@
+{
+  "title": "Siemens MindSphere Asset Structure",
+  "description": "Hierarchical data model for MindSphere industrial IoT asset management",
+  "type": "object",
+  "structure": {
+    "AssetType": {
+      "description": "Template defining the type and capabilities of an asset class",
+      "fields": {
+        "typeId": { "type": "string", "role": "identifier" },
+        "name": { "type": "string", "role": "label" },
+        "description": { "type": "string", "role": "description" },
+        "parentTypeId": { "type": "string", "role": "reference" },
+        "aspects": { "type": "array", "role": "schema-reference" }
+      },
+      "children": {
+        "AspectType": {
+          "description": "Data schema template defining variables collected from an asset",
+          "fields": {
+            "aspectTypeId": { "type": "string", "role": "identifier" },
+            "name": { "type": "string", "role": "label" },
+            "description": { "type": "string", "role": "description" },
+            "category": { "type": "enum", "values": ["static", "dynamic"] }
+          },
+          "children": {
+            "Variable": {
+              "description": "Individual data point definition within an aspect",
+              "fields": {
+                "name": { "type": "string", "role": "identifier" },
+                "dataType": { "type": "enum", "values": ["INT", "LONG", "DOUBLE", "BOOLEAN", "STRING", "TIMESTAMP", "BIGSTRING"] },
+                "unit": { "type": "string", "role": "label" },
+                "searchable": { "type": "boolean", "role": "config" },
+                "length": { "type": "integer", "role": "config" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Asset": {
+      "description": "Digital representation of a physical industrial device or system",
+      "fields": {
+        "assetId": { "type": "uuid", "role": "identifier" },
+        "name": { "type": "string", "role": "label" },
+        "description": { "type": "string", "role": "description" },
+        "typeId": { "type": "string", "role": "type-reference" },
+        "parentId": { "type": "string", "role": "parent-reference" },
+        "timezone": { "type": "string", "role": "config" },
+        "twinType": { "type": "enum", "values": ["performance", "simulation", "aggregation"], "role": "config" },
+        "location": { "type": "object", "role": "geospatial" },
+        "createdAt": { "type": "datetime", "role": "audit" },
+        "updatedAt": { "type": "datetime", "role": "audit" }
+      },
+      "children": {
+        "TimeseriesDataPoint": {
+          "description": "A single timestamped measurement from an asset aspect",
+          "fields": {
+            "_time": { "type": "datetime", "role": "identifier", "description": "ISO 8601 UTC timestamp" },
+            "variables": { "type": "map", "role": "measurements", "description": "Aspect variable values keyed by variable name" }
+          }
+        },
+        "Event": {
+          "description": "A significant occurrence reported by or affecting an asset",
+          "fields": {
+            "id": { "type": "uuid", "role": "identifier" },
+            "entityId": { "type": "uuid", "role": "asset-reference" },
+            "timestamp": { "type": "datetime", "role": "audit" },
+            "typeId": { "type": "string", "role": "type-reference" },
+            "severity": { "type": "integer", "role": "severity", "description": "0=INFO, 20=MINOR, 30=WARNING, 40=MAJOR, 50=CRITICAL" },
+            "description": { "type": "string", "role": "description" }
+          }
+        }
+      }
+    }
+  }
+}

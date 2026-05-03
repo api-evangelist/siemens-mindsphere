@@ -1,0 +1,26 @@
+{
+  "request": {
+    "method": "PUT",
+    "url": "https://gateway.eu1.mindsphere.io/api/iottimeseries/v3/timeseries/asset-123/Temperature",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJSUzI1NiJ9...",
+      "Content-Type": "application/json"
+    },
+    "body": [
+      {
+        "_time": "2026-05-02T10:00:00.000Z",
+        "temperature": 72.5,
+        "pressure": 1013.25
+      },
+      {
+        "_time": "2026-05-02T10:01:00.000Z",
+        "temperature": 73.1,
+        "pressure": 1013.10
+      }
+    ]
+  },
+  "response": {
+    "status": 204,
+    "body": null
+  }
+}

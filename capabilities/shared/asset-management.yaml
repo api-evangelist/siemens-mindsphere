@@ -1,0 +1,151 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Siemens MindSphere Asset Management API"
+  description: "Digital twin asset management for industrial IoT devices and systems on the MindSphere platform."
+  tags:
+    - IoT
+    - Asset Management
+    - Digital Twin
+    - Industrial
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      MINDSPHERE_BEARER_TOKEN: MINDSPHERE_BEARER_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: mindsphere-assets
+      baseUri: https://gateway.eu1.mindsphere.io/api/assetmanagement/v3
+      description: "MindSphere Asset Management REST API"
+      authentication:
+        type: bearer
+        token: "{{MINDSPHERE_BEARER_TOKEN}}"
+      resources:
+        - name: assets
+          path: /assets
+          description: "Asset instance management"
+          operations:
+            - name: list-assets
+              method: GET
+              description: "List all assets in the tenant"
+              inputParameters:
+                - name: size
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Page size"
+                - name: page
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Page number"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-asset
+              method: POST
+              description: "Create a new asset"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+                  typeId: "{{tools.typeId}}"
+                  parentId: "{{tools.parentId}}"
+
+        - name: asset
+          path: /assets/{assetId}
+          description: "Single asset operations"
+          operations:
+            - name: get-asset
+              method: GET
+              description: "Get an asset by ID"
+              inputParameters:
+                - name: assetId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Asset unique identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: delete-asset
+              method: DELETE
+              description: "Delete an asset"
+              inputParameters:
+                - name: assetId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Asset unique identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: aspect-types
+          path: /aspecttypes
+          description: "Aspect type management"
+          operations:
+            - name: list-aspect-types
+              method: GET
+              description: "List all aspect types"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: asset-types
+          path: /assettypes
+          description: "Asset type management"
+          operations:
+            - name: list-asset-types
+              method: GET
+              description: "List all asset types"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: mindsphere-assets-rest
+      resources:
+        - path: /v1/assets
+          name: assets
+          operations:
+            - method: GET
+              name: list-assets
+              description: "List all assets"
+
+    - type: mcp
+      port: 9100
+      namespace: mindsphere-assets-mcp
+      transport: http
+      tools:
+        - name: list-assets
+          description: "List industrial IoT assets in MindSphere"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "mindsphere-assets.list-assets"
+          outputParameters:
+            - type: object
+              mapping: "$."

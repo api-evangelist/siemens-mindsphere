@@ -1,0 +1,49 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://gateway.eu1.mindsphere.io/api/assetmanagement/v3/assets",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJSUzI1NiJ9..."
+    },
+    "query": {
+      "size": 10,
+      "page": 0
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "_embedded": {
+        "assets": [
+          {
+            "assetId": "a1b2c3d4-1234-5678-abcd-ef0123456789",
+            "name": "Production Line Motor 01",
+            "description": "Main conveyor motor on production line A",
+            "typeId": "core.basicasset",
+            "parentId": "root",
+            "timezone": "Europe/Berlin",
+            "twinType": "performance",
+            "createdAt": "2025-06-15T09:00:00Z",
+            "updatedAt": "2026-04-01T14:22:00Z",
+            "_links": {
+              "self": {
+                "href": "/api/assetmanagement/v3/assets/a1b2c3d4-1234-5678-abcd-ef0123456789"
+              }
+            }
+          }
+        ]
+      },
+      "_links": {
+        "self": {
+          "href": "/api/assetmanagement/v3/assets?page=0&size=10"
+        }
+      },
+      "page": {
+        "size": 10,
+        "totalElements": 1,
+        "totalPages": 1,
+        "number": 0
+      }
+    }
+  }
+}

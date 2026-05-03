@@ -1,0 +1,253 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Siemens MindSphere Industrial IoT Monitoring"
+  description: >-
+    Unified workflow capability combining MindSphere Asset Management and IoT
+    Time Series APIs for industrial equipment monitoring. Enables operations
+    teams and industrial engineers to manage digital twins, ingest sensor
+    telemetry, and query historical machine data for predictive maintenance,
+    OEE analysis, and condition monitoring use cases.
+  tags:
+    - IoT
+    - Industrial
+    - Asset Management
+    - Time Series
+    - Digital Twin
+    - Monitoring
+    - Predictive Maintenance
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      MINDSPHERE_BEARER_TOKEN: MINDSPHERE_BEARER_TOKEN
+
+capability:
+  consumes:
+    - import: mindsphere-assets
+      location: ./shared/asset-management.yaml
+    - import: mindsphere-timeseries
+      location: ./shared/iot-timeseries.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: mindsphere-iot-api
+      description: "Unified REST API for industrial IoT asset monitoring and telemetry on MindSphere."
+      resources:
+        - path: /v1/assets
+          name: assets
+          description: "Industrial asset management"
+          operations:
+            - method: GET
+              name: list-assets
+              description: "List all industrial IoT assets"
+              call: "mindsphere-assets.list-assets"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-asset
+              description: "Create a new digital twin asset"
+              call: "mindsphere-assets.create-asset"
+              with:
+                name: "rest.name"
+                typeId: "rest.typeId"
+                parentId: "rest.parentId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/assets/{assetId}
+          name: asset
+          description: "Single asset operations"
+          operations:
+            - method: GET
+              name: get-asset
+              description: "Get asset details by ID"
+              call: "mindsphere-assets.get-asset"
+              with:
+                assetId: "rest.assetId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: DELETE
+              name: delete-asset
+              description: "Delete an asset and its digital twin"
+              call: "mindsphere-assets.delete-asset"
+              with:
+                assetId: "rest.assetId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/aspect-types
+          name: aspect-types
+          description: "Data schema definitions for asset aspects"
+          operations:
+            - method: GET
+              name: list-aspect-types
+              description: "List all aspect type schemas"
+              call: "mindsphere-assets.list-aspect-types"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/asset-types
+          name: asset-types
+          description: "Asset type template definitions"
+          operations:
+            - method: GET
+              name: list-asset-types
+              description: "List all asset type templates"
+              call: "mindsphere-assets.list-asset-types"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/timeseries/{assetId}/{aspectName}
+          name: timeseries
+          description: "Sensor and machine telemetry time series"
+          operations:
+            - method: GET
+              name: get-timeseries
+              description: "Query time-series sensor data for an asset aspect"
+              call: "mindsphere-timeseries.get-timeseries"
+              with:
+                assetId: "rest.assetId"
+                aspectName: "rest.aspectName"
+                from: "rest.from"
+                to: "rest.to"
+                limit: "rest.limit"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: PUT
+              name: ingest-timeseries
+              description: "Ingest sensor readings into time series"
+              call: "mindsphere-timeseries.ingest-timeseries"
+              with:
+                assetId: "rest.assetId"
+                aspectName: "rest.aspectName"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: mindsphere-iot-mcp
+      transport: http
+      description: "MCP server for AI-assisted industrial IoT monitoring and asset management on MindSphere."
+      tools:
+        - name: list-assets
+          description: "List all industrial IoT assets and digital twins in MindSphere"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "mindsphere-assets.list-assets"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-asset
+          description: "Get details of a specific industrial asset or digital twin"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "mindsphere-assets.get-asset"
+          with:
+            assetId: "tools.assetId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: create-asset
+          description: "Create a new digital twin for an industrial device or system"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "mindsphere-assets.create-asset"
+          with:
+            name: "tools.name"
+            typeId: "tools.typeId"
+            parentId: "tools.parentId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: delete-asset
+          description: "Delete an industrial asset and its digital twin representation"
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "mindsphere-assets.delete-asset"
+          with:
+            assetId: "tools.assetId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-aspect-types
+          description: "List all data schema definitions (aspect types) for industrial asset data"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "mindsphere-assets.list-aspect-types"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-asset-types
+          description: "List all asset type templates defining industrial equipment classes"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "mindsphere-assets.list-asset-types"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-timeseries
+          description: "Query historical sensor and machine telemetry from an asset aspect for a time range"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "mindsphere-timeseries.get-timeseries"
+          with:
+            assetId: "tools.assetId"
+            aspectName: "tools.aspectName"
+            from: "tools.from"
+            to: "tools.to"
+            limit: "tools.limit"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: ingest-timeseries
+          description: "Ingest sensor readings and telemetry data into MindSphere time series"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: true
+          call: "mindsphere-timeseries.ingest-timeseries"
+          with:
+            assetId: "tools.assetId"
+            aspectName: "tools.aspectName"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: ingest-multi-timeseries
+          description: "Batch ingest time-series data for multiple industrial assets in one request"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: true
+          call: "mindsphere-timeseries.ingest-multi-timeseries"
+          outputParameters:
+            - type: object
+              mapping: "$."
