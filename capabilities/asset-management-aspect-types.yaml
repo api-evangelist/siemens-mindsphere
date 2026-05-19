@@ -1,0 +1,118 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Siemens MindSphere Asset Management API — Aspect Types
+  description: 'Siemens MindSphere Asset Management API — Aspect Types. 2 operations. Lead operation: List aspect types. Self-contained
+    Naftiko capability covering one Siemens Mindsphere business surface.'
+  tags:
+  - Siemens Mindsphere
+  - Aspect Types
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SIEMENS_MINDSPHERE_API_KEY: SIEMENS_MINDSPHERE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: asset-management-aspect-types
+    baseUri: https://gateway.eu1.mindsphere.io/api/assetmanagement/v3
+    description: Siemens MindSphere Asset Management API — Aspect Types business capability. Self-contained, no shared references.
+    resources:
+    - name: aspecttypes
+      path: /aspecttypes
+      operations:
+      - name: listaspecttypes
+        method: GET
+        description: List aspect types
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+        - name: size
+          in: query
+          type: integer
+      - name: createaspecttype
+        method: POST
+        description: Create an aspect type
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SIEMENS_MINDSPHERE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: asset-management-aspect-types-rest
+    port: 8080
+    description: REST adapter for Siemens MindSphere Asset Management API — Aspect Types. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/aspecttypes
+      name: aspecttypes
+      description: REST surface for aspecttypes.
+      operations:
+      - method: GET
+        name: listaspecttypes
+        description: List aspect types
+        call: asset-management-aspect-types.listaspecttypes
+        with:
+          page: rest.page
+          size: rest.size
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createaspecttype
+        description: Create an aspect type
+        call: asset-management-aspect-types.createaspecttype
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: asset-management-aspect-types-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Siemens MindSphere Asset Management API — Aspect Types. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: list-aspect-types
+      description: List aspect types
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: asset-management-aspect-types.listaspecttypes
+      with:
+        page: tools.page
+        size: tools.size
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-aspect-type
+      description: Create an aspect type
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: asset-management-aspect-types.createaspecttype
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
