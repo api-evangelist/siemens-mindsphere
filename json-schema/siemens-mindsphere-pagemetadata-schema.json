@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PageMetadata",
+  "title": "PageMetadata",
+  "type": "object",
+  "properties": {
+    "size": {
+      "type": "integer"
+    },
+    "totalElements": {
+      "type": "integer"
+    },
+    "totalPages": {
+      "type": "integer"
+    },
+    "number": {
+      "type": "integer"
+    }
+  }
+}

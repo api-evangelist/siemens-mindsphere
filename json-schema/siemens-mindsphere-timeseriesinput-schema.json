@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TimeseriesInput",
+  "title": "TimeseriesInput",
+  "type": "object",
+  "required": [
+    "assetId",
+    "aspectName",
+    "data"
+  ],
+  "properties": {
+    "assetId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "aspectName": {
+      "type": "string"
+    },
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/TimeseriesDataPoint"
+      }
+    }
+  }
+}

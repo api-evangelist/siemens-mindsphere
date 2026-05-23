@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HALLinks",
+  "title": "HALLinks",
+  "type": "object",
+  "additionalProperties": {
+    "type": "object",
+    "properties": {
+      "href": {
+        "type": "string",
+        "format": "uri"
+      }
+    }
+  }
+}

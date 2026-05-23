@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AspectTypeListResponse",
+  "title": "AspectTypeListResponse",
+  "type": "object",
+  "properties": {
+    "_embedded": {
+      "type": "object",
+      "properties": {
+        "aspectTypes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/AspectType"
+          }
+        }
+      }
+    },
+    "page": {
+      "$ref": "#/components/schemas/PageMetadata"
+    }
+  }
+}

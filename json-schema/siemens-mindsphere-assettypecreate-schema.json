@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AssetTypeCreate",
+  "title": "AssetTypeCreate",
+  "type": "object",
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "parentTypeId": {
+      "type": "string"
+    },
+    "instantiable": {
+      "type": "boolean",
+      "default": true
+    },
+    "scope": {
+      "type": "string",
+      "enum": [
+        "private",
+        "public"
+      ]
+    },
+    "aspects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "aspectTypeId"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "aspectTypeId": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "variables": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/VariableDefinition"
+      }
+    }
+  }
+}

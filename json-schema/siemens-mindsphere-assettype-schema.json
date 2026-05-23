@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AssetType",
+  "title": "AssetType",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Asset type identifier (tenant.name)"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "parentTypeId": {
+      "type": "string",
+      "description": "Parent asset type for inheritance"
+    },
+    "instantiable": {
+      "type": "boolean",
+      "description": "Whether assets can be directly instantiated from this type"
+    },
+    "scope": {
+      "type": "string",
+      "enum": [
+        "private",
+        "public"
+      ]
+    },
+    "aspects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "aspectTypeId": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "variables": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/VariableDefinition"
+      }
+    }
+  }
+}

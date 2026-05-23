@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AspectType",
+  "title": "AspectType",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Aspect type identifier (tenant.name)"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "static",
+        "dynamic"
+      ],
+      "description": "static=configuration data, dynamic=time-series telemetry"
+    },
+    "scope": {
+      "type": "string",
+      "enum": [
+        "private",
+        "public"
+      ]
+    },
+    "variables": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/VariableDefinition"
+      }
+    }
+  }
+}

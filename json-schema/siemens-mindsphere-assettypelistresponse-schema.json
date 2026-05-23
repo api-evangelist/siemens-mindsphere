@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AssetTypeListResponse",
+  "title": "AssetTypeListResponse",
+  "type": "object",
+  "properties": {
+    "_embedded": {
+      "type": "object",
+      "properties": {
+        "assetTypes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/AssetType"
+          }
+        }
+      }
+    },
+    "page": {
+      "$ref": "#/components/schemas/PageMetadata"
+    }
+  }
+}

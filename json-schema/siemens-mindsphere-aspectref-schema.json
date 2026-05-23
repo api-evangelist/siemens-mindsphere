@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AspectRef",
+  "title": "AspectRef",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "aspectTypeId": {
+      "type": "string"
+    }
+  }
+}

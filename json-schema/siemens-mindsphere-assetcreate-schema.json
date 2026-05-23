@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AssetCreate",
+  "title": "AssetCreate",
+  "type": "object",
+  "required": [
+    "name",
+    "typeId"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "maxLength": 128
+    },
+    "externalId": {
+      "type": "string",
+      "description": "External identifier for the asset"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 2048
+    },
+    "typeId": {
+      "type": "string"
+    },
+    "parentId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "timezone": {
+      "type": "string",
+      "default": "Europe/Berlin"
+    },
+    "twinType": {
+      "type": "string",
+      "enum": [
+        "performance",
+        "simulation",
+        "shop_floor"
+      ]
+    },
+    "location": {
+      "$ref": "#/components/schemas/Location"
+    },
+    "variables": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/VariableValue"
+      }
+    }
+  }
+}

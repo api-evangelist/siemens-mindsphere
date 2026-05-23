@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/VariableDefinition",
+  "title": "VariableDefinition",
+  "type": "object",
+  "required": [
+    "name",
+    "dataType"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "dataType": {
+      "type": "string",
+      "enum": [
+        "BOOLEAN",
+        "INT",
+        "LONG",
+        "DOUBLE",
+        "STRING",
+        "BIG_STRING",
+        "TIMESTAMP"
+      ]
+    },
+    "unit": {
+      "type": "string",
+      "description": "Unit of measurement (e.g., \"\u00b0C\", \"bar\", \"rpm\")"
+    },
+    "searchable": {
+      "type": "boolean",
+      "default": false
+    },
+    "length": {
+      "type": "integer",
+      "description": "Max length for STRING type"
+    },
+    "defaultValue": {
+      "description": "Default value for the variable",
+      "oneOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "qualityCode": {
+      "type": "boolean",
+      "description": "Whether OPC-UA quality codes are supported"
+    }
+  }
+}

@@ -1,0 +1,219 @@
+{
+  "provider": "Siemens MindSphere",
+  "providerId": "siemens-mindsphere",
+  "kind": "json-structure",
+  "description": "Structural overview of the Siemens MindSphere API surface; extracted from openapi/.",
+  "schemaCount": 17,
+  "operationCount": 10,
+  "schemas": [
+    {
+      "name": "Asset",
+      "type": "object",
+      "propertyCount": 14,
+      "required": []
+    },
+    {
+      "name": "AssetCreate",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "name",
+        "typeId"
+      ]
+    },
+    {
+      "name": "AssetUpdate",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "AssetListResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "AssetType",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "AssetTypeCreate",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "AssetTypeListResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "AspectType",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "AspectTypeCreate",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "name",
+        "category",
+        "variables"
+      ]
+    },
+    {
+      "name": "AspectTypeListResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "VariableDefinition",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "name",
+        "dataType"
+      ]
+    },
+    {
+      "name": "VariableValue",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "name",
+        "value"
+      ]
+    },
+    {
+      "name": "AspectRef",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "Location",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "PageMetadata",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "HALLinks",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ErrorResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/assets",
+      "operationId": "listAssets",
+      "summary": "List all assets",
+      "tags": [
+        "Assets"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/assets",
+      "operationId": "createAsset",
+      "summary": "Create a new asset",
+      "tags": [
+        "Assets"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/assets/{assetId}",
+      "operationId": "getAsset",
+      "summary": "Retrieve an asset",
+      "tags": [
+        "Assets"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/assets/{assetId}",
+      "operationId": "deleteAsset",
+      "summary": "Delete an asset",
+      "tags": [
+        "Assets"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/assets/{assetId}",
+      "operationId": "updateAsset",
+      "summary": "Update an asset",
+      "tags": [
+        "Assets"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/assettypes",
+      "operationId": "listAssetTypes",
+      "summary": "List asset types",
+      "tags": [
+        "Asset Types"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/assettypes",
+      "operationId": "createAssetType",
+      "summary": "Create an asset type",
+      "tags": [
+        "Asset Types"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/assettypes/{id}",
+      "operationId": "getAssetType",
+      "summary": "Retrieve an asset type",
+      "tags": [
+        "Asset Types"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/aspecttypes",
+      "operationId": "listAspectTypes",
+      "summary": "List aspect types",
+      "tags": [
+        "Aspect Types"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/aspecttypes",
+      "operationId": "createAspectType",
+      "summary": "Create an aspect type",
+      "tags": [
+        "Aspect Types"
+      ]
+    }
+  ]
+}

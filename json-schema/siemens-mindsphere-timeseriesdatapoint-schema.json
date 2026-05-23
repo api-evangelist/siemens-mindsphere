@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TimeseriesDataPoint",
+  "title": "TimeseriesDataPoint",
+  "type": "object",
+  "required": [
+    "_time"
+  ],
+  "properties": {
+    "_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 UTC timestamp for the data point",
+      "example": "2026-01-01T00:00:00.000Z"
+    }
+  },
+  "additionalProperties": {
+    "description": "Variable values keyed by variable name. Variable types are defined in the aspect configuration (DOUBLE, LONG, BOOLEAN, STRING, BIG_STRING, INT, TIMESTAMP).",
+    "oneOf": [
+      {
+        "type": "number"
+      },
+      {
+        "type": "boolean"
+      },
+      {
+        "type": "string"
+      },
+      {
+        "type": "null"
+      }
+    ]
+  }
+}
