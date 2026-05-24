@@ -161,6 +161,8 @@ common:
   url: https://github.com/mindsphere
 - type: TermsOfService
   url: https://siemens.mindsphere.io/en/terms
+- type: LLMsTxt
+  url: https://developer.siemens.com/llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
