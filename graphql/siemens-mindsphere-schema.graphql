@@ -1,0 +1,857 @@
+"""
+Siemens MindSphere GraphQL Schema
+Conceptual schema derived from the MindSphere (Insights Hub) REST API surface.
+Covers asset management, time series, events, file service, agent management,
+digital twin models, analytics, identity management, and edge device management.
+"""
+
+# ─── Scalars ────────────────────────────────────────────────────────────────
+
+scalar DateTime
+scalar JSON
+scalar Upload
+scalar Long
+
+# ─── Enums ──────────────────────────────────────────────────────────────────
+
+"""Scope of access for a resource"""
+enum Scope {
+  GLOBAL
+  TENANT
+  PROJECT
+}
+
+"""Status of an IoT agent"""
+enum AgentStatus {
+  ONLINE
+  OFFLINE
+  PROVISIONED
+  DEPROVISIONED
+  UNKNOWN
+}
+
+"""Severity level of an event or alarm"""
+enum EventSeverity {
+  INFORMATION
+  WARNING
+  ERROR
+  CRITICAL
+}
+
+"""State of an event"""
+enum EventState {
+  TRIGGERED
+  CLEARED
+  ACKNOWLEDGED
+}
+
+"""Type of asset"""
+enum AssetLifecycleState {
+  ACTIVE
+  INACTIVE
+  DELETED
+}
+
+"""Data type for variable properties"""
+enum DataType {
+  BOOLEAN
+  INT
+  LONG
+  DOUBLE
+  STRING
+  BIG_STRING
+  TIMESTAMP
+}
+
+"""Aggregation function for time series queries"""
+enum AggregationFunction {
+  AVERAGE
+  MIN
+  MAX
+  SUM
+  COUNT
+  FIRST
+  LAST
+  STDDEV
+  VARIANCE
+  MEDIAN
+}
+
+"""Order direction for list queries"""
+enum OrderDirection {
+  ASC
+  DESC
+}
+
+"""Status of an analytics job"""
+enum AnalyticsJobStatus {
+  PENDING
+  RUNNING
+  COMPLETED
+  FAILED
+  CANCELLED
+}
+
+"""Type of file upload"""
+enum FileCategory {
+  IMAGE
+  DOCUMENT
+  FIRMWARE
+  CONFIG
+  LOG
+  OTHER
+}
+
+"""Edge device status"""
+enum EdgeDeviceStatus {
+  CONNECTED
+  DISCONNECTED
+  PROVISIONING
+  ERROR
+}
+
+# ─── Common / Pagination ─────────────────────────────────────────────────────
+
+"""Generic page info for cursor-based pagination"""
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+  totalCount: Int
+}
+
+"""Standard error returned by mutations"""
+type MutationError {
+  code: String!
+  message: String!
+  field: String
+}
+
+# ─── Asset Management ────────────────────────────────────────────────────────
+
+"""A variable within an aspect type defining a sensor data field"""
+type AspectVariable {
+  name: String!
+  dataType: DataType!
+  unit: String
+  qualityCode: Boolean
+  searchable: Boolean
+  description: String
+}
+
+"""A template defining the data schema for an asset's data aspect"""
+type AspectType {
+  id: ID!
+  name: String!
+  description: String
+  scope: Scope!
+  variables: [AspectVariable!]!
+  createdAt: DateTime
+  updatedAt: DateTime
+  tenantId: String
+}
+
+"""Connection type for paging AspectTypes"""
+type AspectTypeConnection {
+  nodes: [AspectType!]!
+  pageInfo: PageInfo!
+}
+
+"""A linked aspect instance on an asset, referencing an AspectType"""
+type AspectInstance {
+  aspectTypeId: ID!
+  aspectType: AspectType
+  name: String!
+  description: String
+  variables: [AspectVariable!]!
+}
+
+"""A template that defines what an asset looks like"""
+type AssetType {
+  id: ID!
+  name: String!
+  description: String
+  parentTypeId: ID
+  parentType: AssetType
+  aspects: [AspectInstance!]!
+  variables: [AssetVariable!]!
+  fileAssignments: [FileAssignment!]!
+  scope: Scope!
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+"""Connection type for paging AssetTypes"""
+type AssetTypeConnection {
+  nodes: [AssetType!]!
+  pageInfo: PageInfo!
+}
+
+"""A named variable attached directly to an asset type"""
+type AssetVariable {
+  name: String!
+  dataType: DataType!
+  unit: String
+  defaultValue: String
+  description: String
+}
+
+"""Represents a specific file slot on an asset type"""
+type FileAssignment {
+  key: String!
+  description: String
+  accept: String
+  required: Boolean
+}
+
+"""Location data attached to an asset"""
+type AssetLocation {
+  latitude: Float
+  longitude: Float
+  altitude: Float
+  country: String
+  region: String
+  locality: String
+  streetAddress: String
+  postalCode: String
+}
+
+"""An asset instance representing a real industrial device or facility"""
+type Asset {
+  assetId: ID!
+  name: String!
+  description: String
+  externalId: String
+  assetTypeId: ID!
+  assetType: AssetType
+  parentId: ID
+  parent: Asset
+  children: [Asset!]!
+  aspects: [AspectInstance!]!
+  variables: [AssetVariable!]!
+  location: AssetLocation
+  timezone: String
+  twinType: String
+  lifecycleState: AssetLifecycleState!
+  createdAt: DateTime
+  updatedAt: DateTime
+  etag: String
+}
+
+"""Connection type for paging Assets"""
+type AssetConnection {
+  nodes: [Asset!]!
+  pageInfo: PageInfo!
+}
+
+# ─── Time Series ─────────────────────────────────────────────────────────────
+
+"""A single property/variable reading within a time series record"""
+type TimeSeriesProperty {
+  name: String!
+  value: JSON
+  qualityCode: String
+}
+
+"""A single time series record for an asset aspect"""
+type TimeSeriesRecord {
+  timestamp: DateTime!
+  properties: [TimeSeriesProperty!]!
+}
+
+"""Time series data for a given asset and aspect"""
+type TimeSeriesData {
+  assetId: ID!
+  aspectName: String!
+  records: [TimeSeriesRecord!]!
+  from: DateTime
+  to: DateTime
+  limit: Int
+}
+
+"""Aggregated time series data point"""
+type AggregatedTimeSeriesPoint {
+  timestamp: DateTime!
+  function: AggregationFunction!
+  propertyName: String!
+  value: Float
+  qualityGood: Int
+  qualityBad: Int
+  qualityUncertain: Int
+  count: Int
+}
+
+"""Aggregated time series response"""
+type AggregatedTimeSeries {
+  assetId: ID!
+  aspectName: String!
+  intervalUnit: String!
+  intervalValue: Int!
+  points: [AggregatedTimeSeriesPoint!]!
+}
+
+"""Bulk ingest result for time series data"""
+type TimeSeriesIngestResult {
+  accepted: Int!
+  rejected: Int!
+  errors: [MutationError!]!
+}
+
+# ─── Events ──────────────────────────────────────────────────────────────────
+
+"""An event type definition"""
+type EventType {
+  id: ID!
+  name: String!
+  parentId: ID
+  scope: Scope!
+  fields: [EventTypeField!]!
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+"""A field within an event type"""
+type EventTypeField {
+  name: String!
+  filterable: Boolean
+  required: Boolean
+  type: DataType!
+}
+
+"""A single event emitted by an asset"""
+type Event {
+  id: ID!
+  eventTypeId: ID!
+  eventType: EventType
+  assetId: ID!
+  asset: Asset
+  timestamp: DateTime!
+  acknowledged: Boolean!
+  correlationId: String
+  severity: EventSeverity
+  description: String
+  source: String
+  state: EventState
+  additionalProperties: JSON
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+"""Connection type for paging Events"""
+type EventConnection {
+  nodes: [Event!]!
+  pageInfo: PageInfo!
+}
+
+# ─── File Service ─────────────────────────────────────────────────────────────
+
+"""Metadata for a file stored in MindSphere File Service"""
+type FileMetadata {
+  id: ID!
+  name: String!
+  path: String!
+  assetId: ID!
+  asset: Asset
+  size: Long
+  mimeType: String
+  category: FileCategory
+  description: String
+  uploadedAt: DateTime
+  updatedAt: DateTime
+  etag: String
+  downloadUrl: String
+}
+
+"""Connection type for paging FileMetadata"""
+type FileConnection {
+  nodes: [FileMetadata!]!
+  pageInfo: PageInfo!
+}
+
+# ─── Agent / Connectivity Management ─────────────────────────────────────────
+
+"""A MindConnect agent that bridges field devices to MindSphere"""
+type Agent {
+  id: ID!
+  name: String!
+  securityProfile: String
+  status: AgentStatus!
+  assetId: ID
+  asset: Asset
+  lastConnectedAt: DateTime
+  clientId: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+"""Connection type for paging Agents"""
+type AgentConnection {
+  nodes: [Agent!]!
+  pageInfo: PageInfo!
+}
+
+"""Boarding configuration for an agent"""
+type AgentBoardingConfiguration {
+  agentId: ID!
+  content: JSON!
+  clientId: String!
+  clientSecret: String
+  registrationAccessToken: String
+}
+
+# ─── Digital Twin / Model ─────────────────────────────────────────────────────
+
+"""A semantic model describing a digital twin's structure"""
+type DigitalTwinModel {
+  id: ID!
+  displayName: String
+  description: String
+  comment: String
+  type: String!
+  schema: JSON
+  contents: [DigitalTwinContent!]!
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+"""A piece of content (property, relationship, telemetry) within a twin model"""
+type DigitalTwinContent {
+  name: String!
+  type: String!
+  schema: JSON
+  comment: String
+  displayName: String
+  writable: Boolean
+}
+
+"""An instance of a digital twin"""
+type DigitalTwin {
+  id: ID!
+  modelId: ID!
+  model: DigitalTwinModel
+  assetId: ID
+  asset: Asset
+  properties: JSON
+  relationships: [TwinRelationship!]!
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+"""A relationship between two digital twins"""
+type TwinRelationship {
+  id: ID!
+  name: String!
+  sourceId: ID!
+  targetId: ID!
+  properties: JSON
+}
+
+# ─── Analytics ────────────────────────────────────────────────────────────────
+
+"""An analytics pipeline definition"""
+type AnalyticsPipeline {
+  id: ID!
+  name: String!
+  description: String
+  status: AnalyticsJobStatus!
+  inputAssetId: ID
+  outputAssetId: ID
+  configuration: JSON
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+"""An analytics job run"""
+type AnalyticsJob {
+  id: ID!
+  pipelineId: ID!
+  pipeline: AnalyticsPipeline
+  status: AnalyticsJobStatus!
+  startedAt: DateTime
+  completedAt: DateTime
+  errorMessage: String
+  resultSummary: JSON
+}
+
+"""Connection type for paging AnalyticsJobs"""
+type AnalyticsJobConnection {
+  nodes: [AnalyticsJob!]!
+  pageInfo: PageInfo!
+}
+
+# ─── Identity Management ──────────────────────────────────────────────────────
+
+"""A tenant (organization) within MindSphere"""
+type Tenant {
+  id: ID!
+  name: String!
+  displayName: String
+  country: String
+  language: String
+  createdAt: DateTime
+}
+
+"""A user within MindSphere"""
+type User {
+  id: ID!
+  username: String!
+  email: String
+  firstName: String
+  lastName: String
+  active: Boolean!
+  tenantId: ID!
+  groups: [Group!]!
+  roles: [Role!]!
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+"""Connection type for paging Users"""
+type UserConnection {
+  nodes: [User!]!
+  pageInfo: PageInfo!
+}
+
+"""A group for organizing users"""
+type Group {
+  id: ID!
+  displayName: String!
+  description: String
+  members: [User!]!
+  tenantId: ID!
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+"""A role that grants permissions in MindSphere"""
+type Role {
+  id: ID!
+  name: String!
+  description: String
+  scope: Scope!
+  permissions: [String!]!
+}
+
+# ─── Edge Device Management ───────────────────────────────────────────────────
+
+"""An edge device managed by MindSphere"""
+type EdgeDevice {
+  id: ID!
+  name: String!
+  serialNumber: String
+  status: EdgeDeviceStatus!
+  agentId: ID
+  agent: Agent
+  assetId: ID
+  asset: Asset
+  firmwareVersion: String
+  hardwareVersion: String
+  ipAddress: String
+  lastHeartbeatAt: DateTime
+  location: AssetLocation
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+"""Connection type for paging EdgeDevices"""
+type EdgeDeviceConnection {
+  nodes: [EdgeDevice!]!
+  pageInfo: PageInfo!
+}
+
+"""Firmware deployed on an edge device"""
+type EdgeFirmware {
+  id: ID!
+  version: String!
+  releaseDate: DateTime
+  downloadUrl: String
+  checksum: String
+  changelog: String
+}
+
+# ─── Input Types ──────────────────────────────────────────────────────────────
+
+input AssetFilterInput {
+  name: String
+  assetTypeId: ID
+  parentId: ID
+  lifecycleState: AssetLifecycleState
+  externalId: String
+}
+
+input TimeSeriesQueryInput {
+  assetId: ID!
+  aspectName: String!
+  from: DateTime
+  to: DateTime
+  limit: Int
+  orderDirection: OrderDirection
+  propertyNames: [String!]
+}
+
+input TimeSeriesAggregateInput {
+  assetId: ID!
+  aspectName: String!
+  from: DateTime!
+  to: DateTime!
+  intervalUnit: String!
+  intervalValue: Int!
+  functions: [AggregationFunction!]!
+  propertyNames: [String!]
+}
+
+input TimeSeriesRecordInput {
+  timestamp: DateTime!
+  properties: [TimeSeriesPropertyInput!]!
+}
+
+input TimeSeriesPropertyInput {
+  name: String!
+  value: JSON!
+  qualityCode: String
+}
+
+input EventFilterInput {
+  assetId: ID
+  eventTypeId: ID
+  severity: EventSeverity
+  state: EventState
+  from: DateTime
+  to: DateTime
+}
+
+input CreateAssetInput {
+  name: String!
+  description: String
+  externalId: String
+  assetTypeId: ID!
+  parentId: ID
+  location: AssetLocationInput
+  timezone: String
+}
+
+input UpdateAssetInput {
+  name: String
+  description: String
+  externalId: String
+  location: AssetLocationInput
+  timezone: String
+}
+
+input AssetLocationInput {
+  latitude: Float
+  longitude: Float
+  altitude: Float
+  country: String
+  region: String
+  locality: String
+  streetAddress: String
+  postalCode: String
+}
+
+input CreateEventInput {
+  eventTypeId: ID!
+  assetId: ID!
+  timestamp: DateTime!
+  severity: EventSeverity
+  description: String
+  source: String
+  correlationId: String
+  additionalProperties: JSON
+}
+
+input CreateAgentInput {
+  name: String!
+  securityProfile: String
+  assetId: ID
+}
+
+input CreateAspectTypeInput {
+  name: String!
+  description: String
+  scope: Scope!
+  variables: [AspectVariableInput!]!
+}
+
+input AspectVariableInput {
+  name: String!
+  dataType: DataType!
+  unit: String
+  qualityCode: Boolean
+  searchable: Boolean
+  description: String
+}
+
+input CreateAssetTypeInput {
+  name: String!
+  description: String
+  parentTypeId: ID
+  scope: Scope!
+  aspects: [AspectInstanceInput!]
+  variables: [AssetVariableInput!]
+}
+
+input AspectInstanceInput {
+  aspectTypeId: ID!
+  name: String!
+  description: String
+}
+
+input AssetVariableInput {
+  name: String!
+  dataType: DataType!
+  unit: String
+  defaultValue: String
+  description: String
+}
+
+input CreateUserInput {
+  username: String!
+  email: String
+  firstName: String
+  lastName: String
+  password: String!
+}
+
+input UpdateUserInput {
+  email: String
+  firstName: String
+  lastName: String
+  active: Boolean
+}
+
+input CreateEdgeDeviceInput {
+  name: String!
+  serialNumber: String
+  agentId: ID
+  assetId: ID
+  firmwareVersion: String
+  ipAddress: String
+  location: AssetLocationInput
+}
+
+# ─── Query ────────────────────────────────────────────────────────────────────
+
+type Query {
+  # Asset Management
+  asset(assetId: ID!): Asset
+  assets(filter: AssetFilterInput, first: Int, after: String): AssetConnection!
+  assetType(id: ID!): AssetType
+  assetTypes(scope: Scope, first: Int, after: String): AssetTypeConnection!
+  aspectType(id: ID!): AspectType
+  aspectTypes(scope: Scope, first: Int, after: String): AspectTypeConnection!
+  rootAsset: Asset
+
+  # Time Series
+  timeSeries(query: TimeSeriesQueryInput!): TimeSeriesData!
+  aggregatedTimeSeries(query: TimeSeriesAggregateInput!): AggregatedTimeSeries!
+
+  # Events
+  event(id: ID!): Event
+  events(filter: EventFilterInput, first: Int, after: String): EventConnection!
+  eventType(id: ID!): EventType
+  eventTypes(scope: Scope, first: Int, after: String): [EventType!]!
+
+  # File Service
+  file(id: ID!): FileMetadata
+  files(assetId: ID!, first: Int, after: String): FileConnection!
+
+  # Agent Management
+  agent(id: ID!): Agent
+  agents(assetId: ID, first: Int, after: String): AgentConnection!
+  agentBoardingConfiguration(agentId: ID!): AgentBoardingConfiguration
+
+  # Digital Twin
+  digitalTwinModel(id: ID!): DigitalTwinModel
+  digitalTwinModels(first: Int, after: String): [DigitalTwinModel!]!
+  digitalTwin(id: ID!): DigitalTwin
+  digitalTwins(modelId: ID, assetId: ID, first: Int, after: String): [DigitalTwin!]!
+
+  # Analytics
+  analyticsPipeline(id: ID!): AnalyticsPipeline
+  analyticsPipelines(first: Int, after: String): [AnalyticsPipeline!]!
+  analyticsJob(id: ID!): AnalyticsJob
+  analyticsJobs(pipelineId: ID, status: AnalyticsJobStatus, first: Int, after: String): AnalyticsJobConnection!
+
+  # Identity Management
+  tenant(id: ID!): Tenant
+  user(id: ID!): User
+  users(tenantId: ID, first: Int, after: String): UserConnection!
+  group(id: ID!): Group
+  groups(tenantId: ID, first: Int, after: String): [Group!]!
+  roles(scope: Scope): [Role!]!
+
+  # Edge Device Management
+  edgeDevice(id: ID!): EdgeDevice
+  edgeDevices(status: EdgeDeviceStatus, first: Int, after: String): EdgeDeviceConnection!
+  edgeFirmwareVersions: [EdgeFirmware!]!
+}
+
+# ─── Mutation ─────────────────────────────────────────────────────────────────
+
+type Mutation {
+  # Asset Management
+  createAsset(input: CreateAssetInput!): Asset!
+  updateAsset(assetId: ID!, input: UpdateAssetInput!): Asset!
+  deleteAsset(assetId: ID!): Boolean!
+  createAssetType(input: CreateAssetTypeInput!): AssetType!
+  deleteAssetType(id: ID!): Boolean!
+  createAspectType(input: CreateAspectTypeInput!): AspectType!
+  deleteAspectType(id: ID!): Boolean!
+
+  # Time Series
+  ingestTimeSeries(assetId: ID!, aspectName: String!, records: [TimeSeriesRecordInput!]!): TimeSeriesIngestResult!
+  deleteTimeSeries(assetId: ID!, aspectName: String!, from: DateTime!, to: DateTime!): Boolean!
+
+  # Events
+  createEvent(input: CreateEventInput!): Event!
+  acknowledgeEvent(id: ID!): Event!
+  deleteEvent(id: ID!): Boolean!
+
+  # File Service
+  uploadFile(assetId: ID!, file: Upload!, description: String, category: FileCategory): FileMetadata!
+  deleteFile(id: ID!): Boolean!
+
+  # Agent Management
+  createAgent(input: CreateAgentInput!): Agent!
+  deleteAgent(id: ID!): Boolean!
+  onboardAgent(agentId: ID!): AgentBoardingConfiguration!
+  offboardAgent(agentId: ID!): Boolean!
+
+  # Identity Management
+  createUser(input: CreateUserInput!): User!
+  updateUser(id: ID!, input: UpdateUserInput!): User!
+  deleteUser(id: ID!): Boolean!
+  addUserToGroup(userId: ID!, groupId: ID!): Group!
+  removeUserFromGroup(userId: ID!, groupId: ID!): Group!
+  assignRoleToUser(userId: ID!, roleId: ID!): User!
+
+  # Edge Device Management
+  createEdgeDevice(input: CreateEdgeDeviceInput!): EdgeDevice!
+  updateEdgeDeviceFirmware(deviceId: ID!, firmwareId: ID!): EdgeDevice!
+  deleteEdgeDevice(id: ID!): Boolean!
+
+  # Analytics
+  startAnalyticsJob(pipelineId: ID!): AnalyticsJob!
+  cancelAnalyticsJob(jobId: ID!): AnalyticsJob!
+}
+
+# ─── Subscription ─────────────────────────────────────────────────────────────
+
+type Subscription {
+  """Subscribe to new time series records for a given asset aspect"""
+  timeSeriesUpdated(assetId: ID!, aspectName: String!): TimeSeriesRecord!
+
+  """Subscribe to events emitted by an asset"""
+  eventCreated(assetId: ID, severity: EventSeverity): Event!
+
+  """Subscribe to agent status changes"""
+  agentStatusChanged(agentId: ID): Agent!
+
+  """Subscribe to edge device heartbeat updates"""
+  edgeDeviceHeartbeat(deviceId: ID): EdgeDevice!
+
+  """Subscribe to analytics job status changes"""
+  analyticsJobStatusChanged(pipelineId: ID): AnalyticsJob!
+}
