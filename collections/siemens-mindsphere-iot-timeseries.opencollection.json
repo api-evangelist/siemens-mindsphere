@@ -1,0 +1,166 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Siemens MindSphere IoT Time Series API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Timeseries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Ingest time-series data for multiple assets/aspects",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://gateway.eu1.mindsphere.io/api/iottimeseries/v3/timeseries",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates or updates time-series data for multiple asset-aspect combinations in a single request. Each entry specifies an assetId, aspectName, and array of timestamped data points."
+        },
+        {
+          "info": {
+            "name": "Query time-series data for an asset aspect",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.eu1.mindsphere.io/api/iottimeseries/v3/timeseries/:assetId/:aspectName",
+            "params": [
+              {
+                "name": "assetId",
+                "value": "5d7e59d0-8c94-4bce-8a0c-3a7fcc9a1234",
+                "type": "path",
+                "description": "Unique MindSphere asset identifier (UUID)"
+              },
+              {
+                "name": "aspectName",
+                "value": "EnvironmentData",
+                "type": "path",
+                "description": "Aspect name (must match asset type aspect configuration)"
+              },
+              {
+                "name": "from",
+                "value": "2026-01-01T00:00:00Z",
+                "type": "query",
+                "description": "Start of time range (ISO 8601 UTC)"
+              },
+              {
+                "name": "to",
+                "value": "2026-01-01T01:00:00Z",
+                "type": "query",
+                "description": "End of time range (ISO 8601 UTC)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of data points to return (max 2000)"
+              },
+              {
+                "name": "select",
+                "value": "temperature,pressure",
+                "type": "query",
+                "description": "Comma-separated list of variable names to include"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort order by _time"
+              },
+              {
+                "name": "latestValue",
+                "value": "",
+                "type": "query",
+                "description": "Return only the most recent data point"
+              }
+            ]
+          },
+          "docs": "Retrieves time-series data for a specific asset and aspect within a time range. Supports time range queries, field selection, and result limiting. Data is returned ordered by timestamp ascending."
+        },
+        {
+          "info": {
+            "name": "Ingest time-series data for a single asset aspect",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://gateway.eu1.mindsphere.io/api/iottimeseries/v3/timeseries/:assetId/:aspectName",
+            "params": [
+              {
+                "name": "assetId",
+                "value": "5d7e59d0-8c94-4bce-8a0c-3a7fcc9a1234",
+                "type": "path",
+                "description": "Unique MindSphere asset identifier (UUID)"
+              },
+              {
+                "name": "aspectName",
+                "value": "EnvironmentData",
+                "type": "path",
+                "description": "Aspect name (must match asset type aspect configuration)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates or updates time-series data for a specific asset and aspect. Each data point must include a _time field (ISO 8601 UTC) and values for aspect variables."
+        },
+        {
+          "info": {
+            "name": "Delete time-series data for an asset aspect",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://gateway.eu1.mindsphere.io/api/iottimeseries/v3/timeseries/:assetId/:aspectName",
+            "params": [
+              {
+                "name": "assetId",
+                "value": "5d7e59d0-8c94-4bce-8a0c-3a7fcc9a1234",
+                "type": "path",
+                "description": "Unique MindSphere asset identifier (UUID)"
+              },
+              {
+                "name": "aspectName",
+                "value": "EnvironmentData",
+                "type": "path",
+                "description": "Aspect name (must match asset type aspect configuration)"
+              },
+              {
+                "name": "from",
+                "value": "2026-01-01T00:00:00Z",
+                "type": "query",
+                "description": "Start of hourly-aligned range (ISO 8601 UTC)"
+              },
+              {
+                "name": "to",
+                "value": "2026-01-01T01:00:00Z",
+                "type": "query",
+                "description": "End of hourly-aligned range (ISO 8601 UTC)"
+              }
+            ]
+          },
+          "docs": "Deletes all time-series data within an hourly-aligned time range for a specific asset and aspect. The time range must align to UTC hour boundaries."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

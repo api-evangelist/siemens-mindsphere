@@ -1,0 +1,257 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Siemens MindSphere Asset Management API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Assets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.eu1.mindsphere.io/api/assetmanagement/v3/assets",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "JSON filter expression"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of assets visible to the tenant. Supports filtering by asset type, parent asset, and name."
+        },
+        {
+          "info": {
+            "name": "Create a new asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://gateway.eu1.mindsphere.io/api/assetmanagement/v3/assets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new asset of a specified asset type."
+        },
+        {
+          "info": {
+            "name": "Retrieve an asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.eu1.mindsphere.io/api/assetmanagement/v3/assets/:assetId",
+            "params": [
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "path",
+                "description": "Asset UUID"
+              }
+            ]
+          },
+          "docs": "Returns detailed information for a specific asset."
+        },
+        {
+          "info": {
+            "name": "Update an asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://gateway.eu1.mindsphere.io/api/assetmanagement/v3/assets/:assetId",
+            "headers": [
+              {
+                "name": "If-Match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "path",
+                "description": "Asset UUID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates mutable properties of an asset such as name, description, and variables."
+        },
+        {
+          "info": {
+            "name": "Delete an asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://gateway.eu1.mindsphere.io/api/assetmanagement/v3/assets/:assetId",
+            "headers": [
+              {
+                "name": "If-Match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "path",
+                "description": "Asset UUID"
+              }
+            ]
+          },
+          "docs": "Deletes an asset and all its child assets and associated time-series data."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Asset Types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List asset types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.eu1.mindsphere.io/api/assetmanagement/v3/assettypes",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns available asset type definitions."
+        },
+        {
+          "info": {
+            "name": "Create an asset type",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://gateway.eu1.mindsphere.io/api/assetmanagement/v3/assettypes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new asset type with aspect associations and variable definitions."
+        },
+        {
+          "info": {
+            "name": "Retrieve an asset type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.eu1.mindsphere.io/api/assetmanagement/v3/assettypes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Asset type ID (tenant.name)"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific asset type."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Aspect Types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List aspect types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.eu1.mindsphere.io/api/assetmanagement/v3/aspecttypes",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns all aspect type definitions (data model templates)."
+        },
+        {
+          "info": {
+            "name": "Create an aspect type",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://gateway.eu1.mindsphere.io/api/assetmanagement/v3/aspecttypes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new aspect type defining a group of related variables for telemetry data. Variables are typed (DOUBLE, LONG, BOOLEAN, STRING, etc.) with optional units and default values."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

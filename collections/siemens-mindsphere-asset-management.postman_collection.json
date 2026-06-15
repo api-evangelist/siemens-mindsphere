@@ -1,0 +1,1570 @@
+{
+  "item": [
+    {
+      "id": "5de01308-95df-4485-81af-bfcee63646c4",
+      "name": "Aspect Types",
+      "description": {
+        "content": "Aspect type (data model template) management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5c30a4cb-6c6d-4b05-9799-ee994233d87c",
+          "name": "List aspect types",
+          "request": {
+            "name": "List aspect types",
+            "description": {
+              "content": "Returns all aspect type definitions (data model templates).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "aspecttypes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "10"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eb40d7a0-55f3-476c-8235-1d02b133ec28",
+              "name": "List of aspect types",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aspecttypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"aspectTypes\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"category\": \"dynamic\",\n        \"scope\": \"private\",\n        \"variables\": [\n          {\n            \"name\": \"string\",\n            \"dataType\": \"INT\",\n            \"unit\": \"string\",\n            \"searchable\": false,\n            \"length\": 8672,\n            \"defaultValue\": 4076.553892719187,\n            \"qualityCode\": false\n          },\n          {\n            \"name\": \"string\",\n            \"dataType\": \"LONG\",\n            \"unit\": \"string\",\n            \"searchable\": false,\n            \"length\": 9462,\n            \"defaultValue\": 775.661232041841,\n            \"qualityCode\": false\n          }\n        ]\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"category\": \"dynamic\",\n        \"scope\": \"private\",\n        \"variables\": [\n          {\n            \"name\": \"string\",\n            \"dataType\": \"INT\",\n            \"unit\": \"string\",\n            \"searchable\": false,\n            \"length\": 3081,\n            \"defaultValue\": 8499.971753455238,\n            \"qualityCode\": false\n          },\n          {\n            \"name\": \"string\",\n            \"dataType\": \"DOUBLE\",\n            \"unit\": \"string\",\n            \"searchable\": false,\n            \"length\": 6204,\n            \"defaultValue\": 8139.799199056907,\n            \"qualityCode\": false\n          }\n        ]\n      }\n    ]\n  },\n  \"page\": {\n    \"size\": 5245,\n    \"totalElements\": 8200,\n    \"totalPages\": 2317,\n    \"number\": 9955\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "920a1b8b-1d4d-4b5f-9289-954b5b5626d1",
+          "name": "Create an aspect type",
+          "request": {
+            "name": "Create an aspect type",
+            "description": {
+              "content": "Creates a new aspect type defining a group of related variables for telemetry data. Variables are typed (DOUBLE, LONG, BOOLEAN, STRING, etc.) with optional units and default values.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "aspecttypes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"category\": \"<string>\",\n  \"variables\": [\n    {\n      \"name\": \"<string>\",\n      \"dataType\": \"<string>\",\n      \"unit\": \"<string>\",\n      \"searchable\": false,\n      \"length\": \"<integer>\",\n      \"defaultValue\": \"<number>\",\n      \"qualityCode\": \"<boolean>\"\n    }\n  ],\n  \"description\": \"<string>\",\n  \"scope\": \"private\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b59e49c5-b4f3-4b2c-a6c6-c6a6171f1dba",
+              "name": "Aspect type created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aspecttypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"category\": \"<string>\",\n  \"variables\": [\n    {\n      \"name\": \"string\",\n      \"dataType\": \"LONG\",\n      \"unit\": \"string\",\n      \"searchable\": false,\n      \"length\": 6758,\n      \"defaultValue\": 2061.5585734261467,\n      \"qualityCode\": false\n    }\n  ],\n  \"description\": \"<string>\",\n  \"scope\": \"private\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"category\": \"static\",\n  \"scope\": \"public\",\n  \"variables\": [\n    {\n      \"name\": \"string\",\n      \"dataType\": \"LONG\",\n      \"unit\": \"string\",\n      \"searchable\": false,\n      \"length\": 6421,\n      \"defaultValue\": 4484.153434931793,\n      \"qualityCode\": false\n    },\n    {\n      \"name\": \"string\",\n      \"dataType\": \"BIG_STRING\",\n      \"unit\": \"string\",\n      \"searchable\": false,\n      \"length\": 7994,\n      \"defaultValue\": 6631.495071149418,\n      \"qualityCode\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "7831c8d6-912e-4004-b999-d4ea02e74569",
+      "name": "Asset Types",
+      "description": {
+        "content": "Asset type definition management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a2f9b4f4-7ed4-48ed-998d-c9acd7300b7f",
+          "name": "List asset types",
+          "request": {
+            "name": "List asset types",
+            "description": {
+              "content": "Returns available asset type definitions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assettypes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "10"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1f274404-6bd1-4193-8ebf-7cbf5d430f62",
+              "name": "List of asset types",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assettypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"assetTypes\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"parentTypeId\": \"string\",\n        \"instantiable\": false,\n        \"scope\": \"private\",\n        \"aspects\": [\n          {\n            \"name\": \"string\",\n            \"aspectTypeId\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"aspectTypeId\": \"string\"\n          }\n        ],\n        \"variables\": [\n          {\n            \"name\": \"string\",\n            \"dataType\": \"INT\",\n            \"unit\": \"string\",\n            \"searchable\": false,\n            \"length\": 3227,\n            \"defaultValue\": 7841.652626777288,\n            \"qualityCode\": true\n          },\n          {\n            \"name\": \"string\",\n            \"dataType\": \"STRING\",\n            \"unit\": \"string\",\n            \"searchable\": false,\n            \"length\": 2921,\n            \"defaultValue\": 837.100948445213,\n            \"qualityCode\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"parentTypeId\": \"string\",\n        \"instantiable\": true,\n        \"scope\": \"public\",\n        \"aspects\": [\n          {\n            \"name\": \"string\",\n            \"aspectTypeId\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"aspectTypeId\": \"string\"\n          }\n        ],\n        \"variables\": [\n          {\n            \"name\": \"string\",\n            \"dataType\": \"BOOLEAN\",\n            \"unit\": \"string\",\n            \"searchable\": false,\n            \"length\": 6872,\n            \"defaultValue\": 2585.306649217961,\n            \"qualityCode\": true\n          },\n          {\n            \"name\": \"string\",\n            \"dataType\": \"TIMESTAMP\",\n            \"unit\": \"string\",\n            \"searchable\": false,\n            \"length\": 4113,\n            \"defaultValue\": 7152.348062335415,\n            \"qualityCode\": false\n          }\n        ]\n      }\n    ]\n  },\n  \"page\": {\n    \"size\": 2485,\n    \"totalElements\": 3192,\n    \"totalPages\": 9316,\n    \"number\": 4347\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b5e43925-c2d6-45b0-bf59-f1b9c0d246e0",
+          "name": "Create an asset type",
+          "request": {
+            "name": "Create an asset type",
+            "description": {
+              "content": "Creates a new asset type with aspect associations and variable definitions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assettypes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"parentTypeId\": \"<string>\",\n  \"instantiable\": true,\n  \"scope\": \"<string>\",\n  \"aspects\": [\n    {\n      \"name\": \"<string>\",\n      \"aspectTypeId\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"aspectTypeId\": \"<string>\"\n    }\n  ],\n  \"variables\": [\n    {\n      \"name\": \"<string>\",\n      \"dataType\": \"<string>\",\n      \"unit\": \"<string>\",\n      \"searchable\": false,\n      \"length\": \"<integer>\",\n      \"defaultValue\": \"<number>\",\n      \"qualityCode\": \"<boolean>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"dataType\": \"<string>\",\n      \"unit\": \"<string>\",\n      \"searchable\": false,\n      \"length\": \"<integer>\",\n      \"defaultValue\": \"<number>\",\n      \"qualityCode\": \"<boolean>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f81581ab-164e-4d51-a474-c671807da9d7",
+              "name": "Asset type created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assettypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"parentTypeId\": \"<string>\",\n  \"instantiable\": true,\n  \"scope\": \"<string>\",\n  \"aspects\": [\n    {\n      \"name\": \"<string>\",\n      \"aspectTypeId\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"aspectTypeId\": \"<string>\"\n    }\n  ],\n  \"variables\": [\n    {\n      \"name\": \"string\",\n      \"dataType\": \"INT\",\n      \"unit\": \"string\",\n      \"searchable\": false,\n      \"length\": 8783,\n      \"defaultValue\": 6950.1253815588625,\n      \"qualityCode\": false\n    },\n    {\n      \"name\": \"string\",\n      \"dataType\": \"BIG_STRING\",\n      \"unit\": \"string\",\n      \"searchable\": false,\n      \"length\": 8745,\n      \"defaultValue\": 7734.047874431789,\n      \"qualityCode\": true\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"parentTypeId\": \"string\",\n  \"instantiable\": false,\n  \"scope\": \"public\",\n  \"aspects\": [\n    {\n      \"name\": \"string\",\n      \"aspectTypeId\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"aspectTypeId\": \"string\"\n    }\n  ],\n  \"variables\": [\n    {\n      \"name\": \"string\",\n      \"dataType\": \"TIMESTAMP\",\n      \"unit\": \"string\",\n      \"searchable\": false,\n      \"length\": 7792,\n      \"defaultValue\": 3452.8228001540183,\n      \"qualityCode\": false\n    },\n    {\n      \"name\": \"string\",\n      \"dataType\": \"INT\",\n      \"unit\": \"string\",\n      \"searchable\": false,\n      \"length\": 7979,\n      \"defaultValue\": 3312.4039619369137,\n      \"qualityCode\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf9654bf-2b35-407b-b1f7-5771e8b2551c",
+          "name": "Retrieve an asset type",
+          "request": {
+            "name": "Retrieve an asset type",
+            "description": {
+              "content": "Returns details for a specific asset type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assettypes",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Asset type ID (tenant.name)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "78df6dbd-0547-483e-95c0-44a494e70a88",
+              "name": "Asset type details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assettypes",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Asset type ID (tenant.name)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"parentTypeId\": \"string\",\n  \"instantiable\": false,\n  \"scope\": \"public\",\n  \"aspects\": [\n    {\n      \"name\": \"string\",\n      \"aspectTypeId\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"aspectTypeId\": \"string\"\n    }\n  ],\n  \"variables\": [\n    {\n      \"name\": \"string\",\n      \"dataType\": \"TIMESTAMP\",\n      \"unit\": \"string\",\n      \"searchable\": false,\n      \"length\": 7792,\n      \"defaultValue\": 3452.8228001540183,\n      \"qualityCode\": false\n    },\n    {\n      \"name\": \"string\",\n      \"dataType\": \"INT\",\n      \"unit\": \"string\",\n      \"searchable\": false,\n      \"length\": 7979,\n      \"defaultValue\": 3312.4039619369137,\n      \"qualityCode\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bce246b5-fa80-49ec-a55e-9d0c8f1bd172",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assettypes",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Asset type ID (tenant.name)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "0a47803c-76dd-449b-bc2d-0ae367f0094e",
+      "name": "Assets",
+      "description": {
+        "content": "Asset instance management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cb2d1d76-6401-41d8-9e80-cc46b41117fa",
+          "name": "List all assets",
+          "request": {
+            "name": "List all assets",
+            "description": {
+              "content": "Returns a paginated list of assets visible to the tenant. Supports filtering by asset type, parent asset, and name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "JSON filter expression"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "974e4289-a483-4ea0-8451-18a7aee6db51",
+              "name": "Paginated list of assets",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "name,asc"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"assets\": [\n      {\n        \"assetId\": \"16172be1-4b8d-e197-e8e6-eeddd034aedf\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"typeId\": \"string\",\n        \"parentId\": \"93348c13-4958-92d3-7434-6fb6d0263b80\",\n        \"timezone\": \"Europe/Berlin\",\n        \"twinType\": \"performance\",\n        \"location\": {\n          \"country\": \"string\",\n          \"region\": \"string\",\n          \"locality\": \"string\",\n          \"streetAddress\": \"string\",\n          \"postalCode\": \"string\",\n          \"longitude\": -124.79950531729784,\n          \"latitude\": 83.72098863948901,\n          \"altitude\": 7549.2071050150935\n        },\n        \"variables\": [\n          {\n            \"name\": \"string\",\n            \"value\": 723.980104965688\n          },\n          {\n            \"name\": \"string\",\n            \"value\": 1246.759266175783\n          }\n        ],\n        \"aspects\": [\n          {\n            \"name\": \"string\",\n            \"aspectTypeId\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"aspectTypeId\": \"string\"\n          }\n        ],\n        \"etag\": 173,\n        \"tenantId\": \"string\",\n        \"createdAt\": \"2006-08-01T22:40:12.793Z\",\n        \"updatedAt\": \"1972-10-15T07:22:33.379Z\"\n      },\n      {\n        \"assetId\": \"34b56216-4267-a673-e6a8-e7677ec25b19\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"typeId\": \"string\",\n        \"parentId\": \"cc1b46bb-8570-8cbf-f9f4-90be2e368f74\",\n        \"timezone\": \"Europe/Berlin\",\n        \"twinType\": \"shop_floor\",\n        \"location\": {\n          \"country\": \"string\",\n          \"region\": \"string\",\n          \"locality\": \"string\",\n          \"streetAddress\": \"string\",\n          \"postalCode\": \"string\",\n          \"longitude\": -168.67029736795493,\n          \"latitude\": 79.69472558204413,\n          \"altitude\": 7090.574404818326\n        },\n        \"variables\": [\n          {\n            \"name\": \"string\",\n            \"value\": 9479.38335665501\n          },\n          {\n            \"name\": \"string\",\n            \"value\": 3320.9226117997136\n          }\n        ],\n        \"aspects\": [\n          {\n            \"name\": \"string\",\n            \"aspectTypeId\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"aspectTypeId\": \"string\"\n          }\n        ],\n        \"etag\": 7145,\n        \"tenantId\": \"string\",\n        \"createdAt\": \"2011-04-18T00:03:04.299Z\",\n        \"updatedAt\": \"2016-04-18T01:46:00.016Z\"\n      }\n    ]\n  },\n  \"page\": {\n    \"size\": 657,\n    \"totalElements\": 7204,\n    \"totalPages\": 5286,\n    \"number\": 8647\n  },\n  \"_links\": {\n    \"key_0\": {\n      \"href\": \"https://TsGWyGyzLxSqHw.rwjcztYFnt+zWTqIVRBYs2rDh9vZ\"\n    },\n    \"key_1\": {\n      \"href\": \"https://P.qdgfo6.x.TlZE3CaURnOHe9hVweeekvX\"\n    },\n    \"key_2\": {\n      \"href\": \"https://CHOsBbttfagdBnrDOuIqnJArOZwrosws.xath9AAGOn2ZhNeldEWlCgJAuTXrnJt6ZLbax+p9C5FQNjwHF.YsYa\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a827a20-c616-4510-95a7-7cfdc35d3302",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "name,asc"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "eb97c896-2411-4500-8e61-fd9363f5afa4",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "name,asc"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "93ab2d94-b76a-4559-a8aa-47bd65bb220d",
+          "name": "Create a new asset",
+          "request": {
+            "name": "Create a new asset",
+            "description": {
+              "content": "Creates a new asset of a specified asset type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"typeId\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"parentId\": \"<uuid>\",\n  \"timezone\": \"Europe/Berlin\",\n  \"twinType\": \"<string>\",\n  \"location\": {\n    \"country\": \"<string>\",\n    \"region\": \"<string>\",\n    \"locality\": \"<string>\",\n    \"streetAddress\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"longitude\": \"<number>\",\n    \"latitude\": \"<number>\",\n    \"altitude\": \"<number>\"\n  },\n  \"variables\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<number>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<number>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d6ac404a-7222-4ead-8b35-5849a2f4a5d9",
+              "name": "Asset created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"typeId\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"parentId\": \"<uuid>\",\n  \"timezone\": \"Europe/Berlin\",\n  \"twinType\": \"<string>\",\n  \"location\": {\n    \"country\": \"string\",\n    \"region\": \"string\",\n    \"locality\": \"string\",\n    \"streetAddress\": \"string\",\n    \"postalCode\": \"string\",\n    \"longitude\": 87.8424092304536,\n    \"latitude\": -88.22319080636608,\n    \"altitude\": 4813.048473306944\n  },\n  \"variables\": [\n    {\n      \"name\": \"string\",\n      \"value\": 7102.885435706715\n    },\n    {\n      \"name\": \"string\",\n      \"value\": 6858.348407610712\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"assetId\": \"a61a870f-4cd0-4135-2719-5a27ab16edc7\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"typeId\": \"string\",\n  \"parentId\": \"d749f5f6-20bb-fff3-6ecc-a080459ba991\",\n  \"timezone\": \"Europe/Berlin\",\n  \"twinType\": \"simulation\",\n  \"location\": {\n    \"country\": \"string\",\n    \"region\": \"string\",\n    \"locality\": \"string\",\n    \"streetAddress\": \"string\",\n    \"postalCode\": \"string\",\n    \"longitude\": -66.47486854984952,\n    \"latitude\": -87.80572311847347,\n    \"altitude\": 3689.59638352394\n  },\n  \"variables\": [\n    {\n      \"name\": \"string\",\n      \"value\": 3103.77879649959\n    },\n    {\n      \"name\": \"string\",\n      \"value\": 1453.1276408555582\n    }\n  ],\n  \"aspects\": [\n    {\n      \"name\": \"string\",\n      \"aspectTypeId\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"aspectTypeId\": \"string\"\n    }\n  ],\n  \"etag\": 5937,\n  \"tenantId\": \"string\",\n  \"createdAt\": \"1989-05-25T19:45:34.120Z\",\n  \"updatedAt\": \"1954-10-31T11:27:34.651Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "22f5ea58-a5e6-4960-82b8-ce9702b6805b",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"typeId\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"parentId\": \"<uuid>\",\n  \"timezone\": \"Europe/Berlin\",\n  \"twinType\": \"<string>\",\n  \"location\": {\n    \"country\": \"string\",\n    \"region\": \"string\",\n    \"locality\": \"string\",\n    \"streetAddress\": \"string\",\n    \"postalCode\": \"string\",\n    \"longitude\": 87.8424092304536,\n    \"latitude\": -88.22319080636608,\n    \"altitude\": 4813.048473306944\n  },\n  \"variables\": [\n    {\n      \"name\": \"string\",\n      \"value\": 7102.885435706715\n    },\n    {\n      \"name\": \"string\",\n      \"value\": 6858.348407610712\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"name\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8f5050c4-cafe-4759-b99b-75f477b761b0",
+              "name": "Asset with this name already exists under the parent",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"typeId\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"parentId\": \"<uuid>\",\n  \"timezone\": \"Europe/Berlin\",\n  \"twinType\": \"<string>\",\n  \"location\": {\n    \"country\": \"string\",\n    \"region\": \"string\",\n    \"locality\": \"string\",\n    \"streetAddress\": \"string\",\n    \"postalCode\": \"string\",\n    \"longitude\": 87.8424092304536,\n    \"latitude\": -88.22319080636608,\n    \"altitude\": 4813.048473306944\n  },\n  \"variables\": [\n    {\n      \"name\": \"string\",\n      \"value\": 7102.885435706715\n    },\n    {\n      \"name\": \"string\",\n      \"value\": 6858.348407610712\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d7de1bb9-97a4-4db1-a3d2-c22a0068c32a",
+          "name": "Retrieve an asset",
+          "request": {
+            "name": "Retrieve an asset",
+            "description": {
+              "content": "Returns detailed information for a specific asset.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets",
+                ":assetId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "assetId",
+                  "description": "(Required) Asset UUID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "27a505f7-4c09-4778-9228-3ebe5ee4e915",
+              "name": "Asset details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "assetId",
+                      "description": "(Required) Asset UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"assetId\": \"a61a870f-4cd0-4135-2719-5a27ab16edc7\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"typeId\": \"string\",\n  \"parentId\": \"d749f5f6-20bb-fff3-6ecc-a080459ba991\",\n  \"timezone\": \"Europe/Berlin\",\n  \"twinType\": \"simulation\",\n  \"location\": {\n    \"country\": \"string\",\n    \"region\": \"string\",\n    \"locality\": \"string\",\n    \"streetAddress\": \"string\",\n    \"postalCode\": \"string\",\n    \"longitude\": -66.47486854984952,\n    \"latitude\": -87.80572311847347,\n    \"altitude\": 3689.59638352394\n  },\n  \"variables\": [\n    {\n      \"name\": \"string\",\n      \"value\": 3103.77879649959\n    },\n    {\n      \"name\": \"string\",\n      \"value\": 1453.1276408555582\n    }\n  ],\n  \"aspects\": [\n    {\n      \"name\": \"string\",\n      \"aspectTypeId\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"aspectTypeId\": \"string\"\n    }\n  ],\n  \"etag\": 5937,\n  \"tenantId\": \"string\",\n  \"createdAt\": \"1989-05-25T19:45:34.120Z\",\n  \"updatedAt\": \"1954-10-31T11:27:34.651Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "13d9eca8-5262-4ad3-9459-d0cbf79c65f7",
+              "name": "Asset not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "assetId",
+                      "description": "(Required) Asset UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1b825937-4eb8-452e-a463-43c3f8d115dd",
+          "name": "Update an asset",
+          "request": {
+            "name": "Update an asset",
+            "description": {
+              "content": "Updates mutable properties of an asset such as name, description, and variables.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets",
+                ":assetId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "assetId",
+                  "description": "(Required) Asset UUID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ETag for optimistic concurrency control",
+                "key": "If-Match",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"location\": {\n    \"country\": \"<string>\",\n    \"region\": \"<string>\",\n    \"locality\": \"<string>\",\n    \"streetAddress\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"longitude\": \"<number>\",\n    \"latitude\": \"<number>\",\n    \"altitude\": \"<number>\"\n  },\n  \"variables\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<number>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<number>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f1e0bd09-fa90-464e-84cc-41a35a018034",
+              "name": "Asset updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "assetId",
+                      "description": "(Required) Asset UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ETag for optimistic concurrency control",
+                    "key": "If-Match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"location\": {\n    \"country\": \"string\",\n    \"region\": \"string\",\n    \"locality\": \"string\",\n    \"streetAddress\": \"string\",\n    \"postalCode\": \"string\",\n    \"longitude\": -101.59160734187398,\n    \"latitude\": -55.27251885399184,\n    \"altitude\": 3389.322838618614\n  },\n  \"variables\": [\n    {\n      \"name\": \"string\",\n      \"value\": 4804.159714289144\n    },\n    {\n      \"name\": \"string\",\n      \"value\": 1103.5009795047756\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"assetId\": \"a61a870f-4cd0-4135-2719-5a27ab16edc7\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"typeId\": \"string\",\n  \"parentId\": \"d749f5f6-20bb-fff3-6ecc-a080459ba991\",\n  \"timezone\": \"Europe/Berlin\",\n  \"twinType\": \"simulation\",\n  \"location\": {\n    \"country\": \"string\",\n    \"region\": \"string\",\n    \"locality\": \"string\",\n    \"streetAddress\": \"string\",\n    \"postalCode\": \"string\",\n    \"longitude\": -66.47486854984952,\n    \"latitude\": -87.80572311847347,\n    \"altitude\": 3689.59638352394\n  },\n  \"variables\": [\n    {\n      \"name\": \"string\",\n      \"value\": 3103.77879649959\n    },\n    {\n      \"name\": \"string\",\n      \"value\": 1453.1276408555582\n    }\n  ],\n  \"aspects\": [\n    {\n      \"name\": \"string\",\n      \"aspectTypeId\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"aspectTypeId\": \"string\"\n    }\n  ],\n  \"etag\": 5937,\n  \"tenantId\": \"string\",\n  \"createdAt\": \"1989-05-25T19:45:34.120Z\",\n  \"updatedAt\": \"1954-10-31T11:27:34.651Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b076975e-04e0-4da9-a804-9b30dceec9a8",
+              "name": "Conflict — ETag mismatch",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "assetId",
+                      "description": "(Required) Asset UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ETag for optimistic concurrency control",
+                    "key": "If-Match",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"location\": {\n    \"country\": \"string\",\n    \"region\": \"string\",\n    \"locality\": \"string\",\n    \"streetAddress\": \"string\",\n    \"postalCode\": \"string\",\n    \"longitude\": -101.59160734187398,\n    \"latitude\": -55.27251885399184,\n    \"altitude\": 3389.322838618614\n  },\n  \"variables\": [\n    {\n      \"name\": \"string\",\n      \"value\": 4804.159714289144\n    },\n    {\n      \"name\": \"string\",\n      \"value\": 1103.5009795047756\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d4e9c42b-030a-4dd6-b321-63bcb4f1d0ae",
+          "name": "Delete an asset",
+          "request": {
+            "name": "Delete an asset",
+            "description": {
+              "content": "Deletes an asset and all its child assets and associated time-series data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets",
+                ":assetId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "assetId",
+                  "description": "(Required) Asset UUID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "If-Match",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4646e9f8-c5f3-4913-944e-5bb5bf91b7e9",
+              "name": "Asset deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "assetId",
+                      "description": "(Required) Asset UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "If-Match",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "63d28d28-7637-4dcf-aa6b-4e75d0e9cc1c",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "assetId",
+                      "description": "(Required) Asset UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "If-Match",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1a03f1a2-87a4-46ed-b52e-9e3a38dbe471",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "assetId",
+                      "description": "(Required) Asset UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "If-Match",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://gateway.eu1.mindsphere.io/api/assetmanagement/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2943e157-26a8-4133-a3a3-91f64c2d717f",
+    "name": "Siemens MindSphere Asset Management API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The MindSphere Asset Management API enables creating and managing assets, defining aspect types and asset types, configuring data models, and handling connectivity for IoT devices. Supports hierarchical asset structures for digital twin modeling of industrial equipment.\n\nContact Support:\n Name: Siemens MindSphere Developer Support",
+      "type": "text/plain"
+    }
+  }
+}
