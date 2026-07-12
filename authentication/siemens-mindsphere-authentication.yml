@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/siemens-mindsphere-asset-management-openapi.yml, openapi/siemens-mindsphere-iot-timeseries-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  sources:
+  - openapi/siemens-mindsphere-asset-management-openapi.yml
+  - openapi/siemens-mindsphere-iot-timeseries-openapi.yml

@@ -154,6 +154,12 @@ description: Siemens MindSphere (now Insights Hub) is Siemens' Industrial IoT as
   and industrial analytics use cases across manufacturing, energy, transportation,
   and infrastructure.
 common:
+- type: VulnerabilityDisclosure
+  url: security/siemens-mindsphere-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/siemens-mindsphere-domain-security.yml
+- type: Authentication
+  url: authentication/siemens-mindsphere-authentication.yml
 - type: Website
   url: https://siemens.com/mindsphere
 - type: Documentation
