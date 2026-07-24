@@ -1,0 +1,361 @@
+openapi: 3.1.0
+info:
+  title: Siemens MindSphere Asset Management Aspect Types Assets API
+  description: The MindSphere Asset Management API enables creating and managing assets, defining aspect types and asset types, configuring data models, and handling connectivity for IoT devices. Supports hierarchical asset structures for digital twin modeling of industrial equipment.
+  version: '3.0'
+  contact:
+    name: Siemens MindSphere Developer Support
+    url: https://documentation.mindsphere.io/MindSphere/apis/advanced-assetmanagement/api-assetmanagement-overview.html
+servers:
+- url: https://gateway.eu1.mindsphere.io/api/assetmanagement/v3
+  description: MindSphere Asset Management EU1
+security:
+- BearerAuth: []
+tags:
+- name: Assets
+  description: Asset instance management
+paths:
+  /assets:
+    get:
+      operationId: listAssets
+      summary: List all assets
+      description: Returns a paginated list of assets visible to the tenant. Supports filtering by asset type, parent asset, and name.
+      tags:
+      - Assets
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 0
+      - name: size
+        in: query
+        schema:
+          type: integer
+          default: 10
+          maximum: 100
+      - name: sort
+        in: query
+        schema:
+          type: string
+          example: name,asc
+      - name: filter
+        in: query
+        description: JSON filter expression
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Paginated list of assets
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetListResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+    post:
+      operationId: createAsset
+      summary: Create a new asset
+      description: Creates a new asset of a specified asset type.
+      tags:
+      - Assets
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetCreate'
+      responses:
+        '201':
+          description: Asset created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Asset with this name already exists under the parent
+  /assets/{assetId}:
+    get:
+      operationId: getAsset
+      summary: Retrieve an asset
+      description: Returns detailed information for a specific asset.
+      tags:
+      - Assets
+      parameters:
+      - $ref: '#/components/parameters/AssetId'
+      responses:
+        '200':
+          description: Asset details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset'
+        '404':
+          description: Asset not found
+    patch:
+      operationId: updateAsset
+      summary: Update an asset
+      description: Updates mutable properties of an asset such as name, description, and variables.
+      tags:
+      - Assets
+      parameters:
+      - $ref: '#/components/parameters/AssetId'
+      - name: If-Match
+        in: header
+        required: true
+        schema:
+          type: string
+        description: ETag for optimistic concurrency control
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetUpdate'
+      responses:
+        '200':
+          description: Asset updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset'
+        '409':
+          description: Conflict — ETag mismatch
+    delete:
+      operationId: deleteAsset
+      summary: Delete an asset
+      description: Deletes an asset and all its child assets and associated time-series data.
+      tags:
+      - Assets
+      parameters:
+      - $ref: '#/components/parameters/AssetId'
+      - name: If-Match
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Asset deleted
+        '404':
+          description: Not found
+        '409':
+          description: Conflict
+components:
+  schemas:
+    AspectRef:
+      type: object
+      properties:
+        name:
+          type: string
+        aspectTypeId:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              message:
+                type: string
+    Location:
+      type: object
+      properties:
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code
+        region:
+          type: string
+        locality:
+          type: string
+        streetAddress:
+          type: string
+        postalCode:
+          type: string
+        longitude:
+          type: number
+          minimum: -180
+          maximum: 180
+        latitude:
+          type: number
+          minimum: -90
+          maximum: 90
+        altitude:
+          type: number
+          description: Altitude in meters
+    HALLinks:
+      type: object
+      additionalProperties:
+        type: object
+        properties:
+          href:
+            type: string
+            format: uri
+    PageMetadata:
+      type: object
+      properties:
+        size:
+          type: integer
+        totalElements:
+          type: integer
+        totalPages:
+          type: integer
+        number:
+          type: integer
+    AssetUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        timezone:
+          type: string
+        location:
+          $ref: '#/components/schemas/Location'
+        variables:
+          type: array
+          items:
+            $ref: '#/components/schemas/VariableValue'
+    AssetCreate:
+      type: object
+      required:
+      - name
+      - typeId
+      properties:
+        name:
+          type: string
+          maxLength: 128
+        externalId:
+          type: string
+          description: External identifier for the asset
+        description:
+          type: string
+          maxLength: 2048
+        typeId:
+          type: string
+        parentId:
+          type: string
+          format: uuid
+        timezone:
+          type: string
+          default: Europe/Berlin
+        twinType:
+          type: string
+          enum:
+          - performance
+          - simulation
+          - shop_floor
+        location:
+          $ref: '#/components/schemas/Location'
+        variables:
+          type: array
+          items:
+            $ref: '#/components/schemas/VariableValue'
+    VariableValue:
+      type: object
+      required:
+      - name
+      - value
+      properties:
+        name:
+          type: string
+        value:
+          oneOf:
+          - type: number
+          - type: string
+          - type: boolean
+          - type: 'null'
+    Asset:
+      type: object
+      properties:
+        assetId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        typeId:
+          type: string
+          description: Asset type ID reference
+        parentId:
+          type: string
+          format: uuid
+          nullable: true
+          description: Parent asset UUID (null for root)
+        timezone:
+          type: string
+          description: IANA timezone identifier
+          example: Europe/Berlin
+        twinType:
+          type: string
+          enum:
+          - performance
+          - simulation
+          - shop_floor
+        location:
+          $ref: '#/components/schemas/Location'
+        variables:
+          type: array
+          items:
+            $ref: '#/components/schemas/VariableValue'
+        aspects:
+          type: array
+          items:
+            $ref: '#/components/schemas/AspectRef'
+        etag:
+          type: integer
+          description: Optimistic locking version
+        tenantId:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    AssetListResponse:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            assets:
+              type: array
+              items:
+                $ref: '#/components/schemas/Asset'
+        page:
+          $ref: '#/components/schemas/PageMetadata'
+        _links:
+          $ref: '#/components/schemas/HALLinks'
+  parameters:
+    AssetId:
+      name: assetId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: Asset UUID
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

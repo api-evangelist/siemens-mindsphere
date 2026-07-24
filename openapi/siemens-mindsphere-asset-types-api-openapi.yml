@@ -1,0 +1,219 @@
+openapi: 3.1.0
+info:
+  title: Siemens MindSphere Asset Management Aspect Types Asset Types API
+  description: The MindSphere Asset Management API enables creating and managing assets, defining aspect types and asset types, configuring data models, and handling connectivity for IoT devices. Supports hierarchical asset structures for digital twin modeling of industrial equipment.
+  version: '3.0'
+  contact:
+    name: Siemens MindSphere Developer Support
+    url: https://documentation.mindsphere.io/MindSphere/apis/advanced-assetmanagement/api-assetmanagement-overview.html
+servers:
+- url: https://gateway.eu1.mindsphere.io/api/assetmanagement/v3
+  description: MindSphere Asset Management EU1
+security:
+- BearerAuth: []
+tags:
+- name: Asset Types
+  description: Asset type definition management
+paths:
+  /assettypes:
+    get:
+      operationId: listAssetTypes
+      summary: List asset types
+      description: Returns available asset type definitions.
+      tags:
+      - Asset Types
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+      - name: size
+        in: query
+        schema:
+          type: integer
+          default: 10
+      responses:
+        '200':
+          description: List of asset types
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetTypeListResponse'
+    post:
+      operationId: createAssetType
+      summary: Create an asset type
+      description: Creates a new asset type with aspect associations and variable definitions.
+      tags:
+      - Asset Types
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetTypeCreate'
+      responses:
+        '201':
+          description: Asset type created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetType'
+  /assettypes/{id}:
+    get:
+      operationId: getAssetType
+      summary: Retrieve an asset type
+      description: Returns details for a specific asset type.
+      tags:
+      - Asset Types
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Asset type ID (tenant.name)
+      responses:
+        '200':
+          description: Asset type details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetType'
+        '404':
+          description: Not found
+components:
+  schemas:
+    AssetTypeListResponse:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            assetTypes:
+              type: array
+              items:
+                $ref: '#/components/schemas/AssetType'
+        page:
+          $ref: '#/components/schemas/PageMetadata'
+    VariableDefinition:
+      type: object
+      required:
+      - name
+      - dataType
+      properties:
+        name:
+          type: string
+        dataType:
+          type: string
+          enum:
+          - BOOLEAN
+          - INT
+          - LONG
+          - DOUBLE
+          - STRING
+          - BIG_STRING
+          - TIMESTAMP
+        unit:
+          type: string
+          description: Unit of measurement (e.g., "°C", "bar", "rpm")
+        searchable:
+          type: boolean
+          default: false
+        length:
+          type: integer
+          description: Max length for STRING type
+        defaultValue:
+          description: Default value for the variable
+          oneOf:
+          - type: number
+          - type: string
+          - type: boolean
+          - type: 'null'
+        qualityCode:
+          type: boolean
+          description: Whether OPC-UA quality codes are supported
+    PageMetadata:
+      type: object
+      properties:
+        size:
+          type: integer
+        totalElements:
+          type: integer
+        totalPages:
+          type: integer
+        number:
+          type: integer
+    AssetType:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Asset type identifier (tenant.name)
+        name:
+          type: string
+        description:
+          type: string
+        parentTypeId:
+          type: string
+          description: Parent asset type for inheritance
+        instantiable:
+          type: boolean
+          description: Whether assets can be directly instantiated from this type
+        scope:
+          type: string
+          enum:
+          - private
+          - public
+        aspects:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              aspectTypeId:
+                type: string
+        variables:
+          type: array
+          items:
+            $ref: '#/components/schemas/VariableDefinition'
+    AssetTypeCreate:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        parentTypeId:
+          type: string
+        instantiable:
+          type: boolean
+          default: true
+        scope:
+          type: string
+          enum:
+          - private
+          - public
+        aspects:
+          type: array
+          items:
+            type: object
+            required:
+            - name
+            - aspectTypeId
+            properties:
+              name:
+                type: string
+              aspectTypeId:
+                type: string
+        variables:
+          type: array
+          items:
+            $ref: '#/components/schemas/VariableDefinition'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
