@@ -1,56 +1,6 @@
 aid: siemens-mindsphere
 url: https://raw.githubusercontent.com/api-evangelist/siemens-mindsphere/refs/heads/main/apis.yml
 apis:
-- aid: siemens-mindsphere:asset-management-api
-  name: Siemens MindSphere Asset Management API
-  tags:
-  - IoT
-  - Asset Management
-  - Digital Twin
-  - Industrial
-  humanURL: https://documentation.mindsphere.io/MindSphere/apis/advanced-assetmanagement/api-assetmanagement-overview.html
-  baseURL: https://gateway.eu1.mindsphere.io/api/assetmanagement/v3
-  properties:
-  - url: https://documentation.mindsphere.io/MindSphere/apis/advanced-assetmanagement/api-assetmanagement-overview.html
-    type: Documentation
-  - url: openapi/siemens-mindsphere-asset-management-openapi.yml
-    type: OpenAPI
-  - url: rules/siemens-mindsphere-rules.yml
-    type: SpectralRules
-  - url: capabilities/industrial-iot-monitoring.yaml
-    type: Capabilities
-  - url: json-schema/siemens-mindsphere-asset-schema.json
-    type: JSONSchema
-  - url: json-ld/siemens-mindsphere-context.jsonld
-    type: JSONLD
-  - url: vocabulary/siemens-mindsphere-vocabulary.yml
-    type: Vocabulary
-  - url: graphql/siemens-mindsphere-graphql.md
-    type: GraphQL
-  description: The MindSphere Asset Management API enables creating and managing digital
-    representations of industrial equipment and facilities as hierarchical asset trees.
-    Assets model real-world equipment using aspect types (data schemas) and asset
-    types (templates), enabling digital twin scenarios for industrial IoT deployments.
-- aid: siemens-mindsphere:iot-timeseries-api
-  name: Siemens MindSphere IoT Time Series API
-  tags:
-  - IoT
-  - Time Series
-  - Telemetry
-  - Industrial
-  humanURL: https://documentation.mindsphere.io/MindSphere/apis/iot-iottimeseries/api-iottimeseries-overview.html
-  baseURL: https://gateway.eu1.mindsphere.io/api/iottimeseries/v3
-  properties:
-  - url: https://documentation.mindsphere.io/MindSphere/apis/iot-iottimeseries/api-iottimeseries-overview.html
-    type: Documentation
-  - url: openapi/siemens-mindsphere-iot-timeseries-openapi.yml
-    type: OpenAPI
-  - url: json-schema/siemens-mindsphere-timeseries-schema.json
-    type: JSONSchema
-  description: The MindSphere IoT Time Series API enables storing, querying, and retrieving
-    time-series telemetry data from industrial equipment and IoT assets. Supports
-    high-frequency data ingestion up to 1 Hz, bulk imports, and time-range queries
-    for sensor and machine data organized by asset and aspect.
 - aid: siemens-mindsphere:identity-management-api
   name: Siemens MindSphere Identity Management API
   tags:
@@ -58,13 +8,15 @@ apis:
   - Access Management
   - Users
   - Industrial
-  humanURL: https://documentation.mindsphere.io/MindSphere/apis/core-identitymanagement/api-identitymanagement-overview.html
+  humanURL: >-
+    https://documentation.mindsphere.io/MindSphere/apis/core-identitymanagement/api-identitymanagement-overview.html
   properties:
-  - url: https://documentation.mindsphere.io/MindSphere/apis/core-identitymanagement/api-identitymanagement-overview.html
+  - url: >-
+      https://documentation.mindsphere.io/MindSphere/apis/core-identitymanagement/api-identitymanagement-overview.html
     type: Documentation
-  description: Manages environments, users, and groups within MindSphere (Insights
-    Hub). Provides user provisioning, group membership management, and role assignment
-    for industrial IoT platform access control.
+  description: >-
+    Manages environments, users, and groups within MindSphere (Insights Hub). Provides user provisioning,
+    group membership management, and role assignment for industrial IoT platform access control.
 - aid: siemens-mindsphere:iot-file-service-api
   name: Siemens MindSphere IoT File Service API
   tags:
@@ -72,13 +24,15 @@ apis:
   - File Management
   - Storage
   - Industrial
-  humanURL: https://documentation.mindsphere.io/MindSphere/apis/iot-iotfile/api-iotfile-overview.html
+  humanURL: >-
+    https://documentation.mindsphere.io/MindSphere/apis/iot-iotfile/api-iotfile-overview.html
   properties:
-  - url: https://documentation.mindsphere.io/MindSphere/apis/iot-iotfile/api-iotfile-overview.html
+  - url: >-
+      https://documentation.mindsphere.io/MindSphere/apis/iot-iotfile/api-iotfile-overview.html
     type: Documentation
-  description: File management service for files related to IoT assets. Enables uploading,
-    downloading, and managing files attached to asset instances such as firmware images,
-    configuration files, and maintenance records.
+  description: >-
+    File management service for files related to IoT assets. Enables uploading, downloading, and managing
+    files attached to asset instances such as firmware images, configuration files, and maintenance records.
 - aid: siemens-mindsphere:event-management-api
   name: Siemens MindSphere Event Management API
   tags:
@@ -86,14 +40,16 @@ apis:
   - Events
   - Alerts
   - Industrial
-  humanURL: https://documentation.mindsphere.io/MindSphere/apis/advanced-eventmanagement/api-eventmanagement-overview.html
+  humanURL: >-
+    https://documentation.mindsphere.io/MindSphere/apis/advanced-eventmanagement/api-eventmanagement-overview.html
   properties:
-  - url: https://documentation.mindsphere.io/MindSphere/apis/advanced-eventmanagement/api-eventmanagement-overview.html
+  - url: >-
+      https://documentation.mindsphere.io/MindSphere/apis/advanced-eventmanagement/api-eventmanagement-overview.html
     type: Documentation
-  description: The Event Management Service captures and manages events generated
-    by industrial devices in MindSphere. Events represent significant occurrences
-    such as alarms, machine state changes, maintenance triggers, and threshold violations
-    from connected industrial equipment.
+  description: >-
+    The Event Management Service captures and manages events generated by industrial devices in MindSphere.
+    Events represent significant occurrences such as alarms, machine state changes, maintenance triggers,
+    and threshold violations from connected industrial equipment.
 - aid: siemens-mindsphere:agent-management-api
   name: Siemens MindSphere Agent Management API
   tags:
@@ -101,13 +57,15 @@ apis:
   - Connectivity
   - Agent
   - Industrial
-  humanURL: https://documentation.mindsphere.io/MindSphere/apis/connectivity-agentmanagement/api-agentmanagement-overview.html
+  humanURL: >-
+    https://documentation.mindsphere.io/MindSphere/apis/connectivity-agentmanagement/api-agentmanagement-overview.html
   properties:
-  - url: https://documentation.mindsphere.io/MindSphere/apis/connectivity-agentmanagement/api-agentmanagement-overview.html
+  - url: >-
+      https://documentation.mindsphere.io/MindSphere/apis/connectivity-agentmanagement/api-agentmanagement-overview.html
     type: Documentation
-  description: API to onboard, offboard, update, and delete MindConnect agents that
-    act as gateways connecting field devices to the MindSphere platform. Manages agent
-    configurations and certificates for secure connectivity.
+  description: >-
+    API to onboard, offboard, update, and delete MindConnect agents that act as gateways connecting field
+    devices to the MindSphere platform. Manages agent configurations and certificates for secure connectivity.
 - aid: siemens-mindsphere:mindconnect-nodejs-sdk
   name: Siemens MindConnect Node.js SDK
   tags:
@@ -116,17 +74,143 @@ apis:
   - TypeScript
   - IoT
   - Connectivity
-  humanURL: https://developer.siemens.com/industrial-iot-open-source/mindconnect-nodejs/sdk/index.html
+  humanURL: >-
+    https://developer.siemens.com/industrial-iot-open-source/mindconnect-nodejs/sdk/index.html
   properties:
-  - url: https://developer.siemens.com/industrial-iot-open-source/mindconnect-nodejs/sdk/index.html
+  - url: >-
+      https://developer.siemens.com/industrial-iot-open-source/mindconnect-nodejs/sdk/index.html
     type: Documentation
   - url: https://github.com/mindsphere/mindconnect-nodejs
     type: GitHub
   - url: https://www.npmjs.com/package/@mindconnect/mindconnect-nodejs
     type: SDKs
-  description: TypeScript and JavaScript community SDK for Industrial IoT APIs providing
-    convenient wrappers around the MindSphere REST APIs for asset management, time
-    series, file upload, and event management.
+  description: >-
+    TypeScript and JavaScript community SDK for Industrial IoT APIs providing convenient wrappers around
+    the MindSphere REST APIs for asset management, time series, file upload, and event management.
+- aid: siemens-mindsphere:siemens-mindsphere-aspect-types-api
+  name: Siemens MindSphere Aspect Types API
+  description: Aspect type (data model template) management
+  humanURL: >-
+    https://documentation.mindsphere.io/MindSphere/apis/advanced-assetmanagement/api-assetmanagement-overview.html
+  baseURL: https://gateway.eu1.mindsphere.io/api/assetmanagement/v3
+  tags:
+  - Aspect Types
+  properties:
+  - type: OpenAPI
+    url: openapi/siemens-mindsphere-aspect-types-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://documentation.mindsphere.io/MindSphere/apis/advanced-assetmanagement/api-assetmanagement-overview.html
+  - type: SpectralRules
+    url: rules/siemens-mindsphere-rules.yml
+  - type: Capabilities
+    url: capabilities/industrial-iot-monitoring.yaml
+  - type: JSONSchema
+    url: json-schema/siemens-mindsphere-asset-schema.json
+  - type: JSONLD
+    url: json-ld/siemens-mindsphere-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/siemens-mindsphere-vocabulary.yml
+  - type: GraphQL
+    url: graphql/siemens-mindsphere-graphql.md
+  - type: Documentation
+    url: >-
+      https://documentation.mindsphere.io/MindSphere/apis/iot-iottimeseries/api-iottimeseries-overview.html
+  - type: JSONSchema
+    url: json-schema/siemens-mindsphere-timeseries-schema.json
+- aid: siemens-mindsphere:siemens-mindsphere-asset-types-api
+  name: Siemens MindSphere Asset Types API
+  description: Asset type definition management
+  humanURL: >-
+    https://documentation.mindsphere.io/MindSphere/apis/advanced-assetmanagement/api-assetmanagement-overview.html
+  baseURL: https://gateway.eu1.mindsphere.io/api/assetmanagement/v3
+  tags:
+  - Asset Types
+  properties:
+  - type: OpenAPI
+    url: openapi/siemens-mindsphere-asset-types-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://documentation.mindsphere.io/MindSphere/apis/advanced-assetmanagement/api-assetmanagement-overview.html
+  - type: SpectralRules
+    url: rules/siemens-mindsphere-rules.yml
+  - type: Capabilities
+    url: capabilities/industrial-iot-monitoring.yaml
+  - type: JSONSchema
+    url: json-schema/siemens-mindsphere-asset-schema.json
+  - type: JSONLD
+    url: json-ld/siemens-mindsphere-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/siemens-mindsphere-vocabulary.yml
+  - type: GraphQL
+    url: graphql/siemens-mindsphere-graphql.md
+  - type: Documentation
+    url: >-
+      https://documentation.mindsphere.io/MindSphere/apis/iot-iottimeseries/api-iottimeseries-overview.html
+  - type: JSONSchema
+    url: json-schema/siemens-mindsphere-timeseries-schema.json
+- aid: siemens-mindsphere:siemens-mindsphere-assets-api
+  name: Siemens MindSphere Assets API
+  description: Asset instance management
+  humanURL: >-
+    https://documentation.mindsphere.io/MindSphere/apis/advanced-assetmanagement/api-assetmanagement-overview.html
+  baseURL: https://gateway.eu1.mindsphere.io/api/assetmanagement/v3
+  tags:
+  - Assets
+  properties:
+  - type: OpenAPI
+    url: openapi/siemens-mindsphere-assets-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://documentation.mindsphere.io/MindSphere/apis/advanced-assetmanagement/api-assetmanagement-overview.html
+  - type: SpectralRules
+    url: rules/siemens-mindsphere-rules.yml
+  - type: Capabilities
+    url: capabilities/industrial-iot-monitoring.yaml
+  - type: JSONSchema
+    url: json-schema/siemens-mindsphere-asset-schema.json
+  - type: JSONLD
+    url: json-ld/siemens-mindsphere-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/siemens-mindsphere-vocabulary.yml
+  - type: GraphQL
+    url: graphql/siemens-mindsphere-graphql.md
+  - type: Documentation
+    url: >-
+      https://documentation.mindsphere.io/MindSphere/apis/iot-iottimeseries/api-iottimeseries-overview.html
+  - type: JSONSchema
+    url: json-schema/siemens-mindsphere-timeseries-schema.json
+- aid: siemens-mindsphere:siemens-mindsphere-timeseries-api
+  name: Siemens MindSphere Timeseries API
+  description: Time-series data read and write operations
+  humanURL: >-
+    https://documentation.mindsphere.io/MindSphere/apis/advanced-assetmanagement/api-assetmanagement-overview.html
+  baseURL: https://gateway.eu1.mindsphere.io/api/assetmanagement/v3
+  tags:
+  - Timeseries
+  properties:
+  - type: OpenAPI
+    url: openapi/siemens-mindsphere-timeseries-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://documentation.mindsphere.io/MindSphere/apis/advanced-assetmanagement/api-assetmanagement-overview.html
+  - type: SpectralRules
+    url: rules/siemens-mindsphere-rules.yml
+  - type: Capabilities
+    url: capabilities/industrial-iot-monitoring.yaml
+  - type: JSONSchema
+    url: json-schema/siemens-mindsphere-asset-schema.json
+  - type: JSONLD
+    url: json-ld/siemens-mindsphere-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/siemens-mindsphere-vocabulary.yml
+  - type: GraphQL
+    url: graphql/siemens-mindsphere-graphql.md
+  - type: Documentation
+    url: >-
+      https://documentation.mindsphere.io/MindSphere/apis/iot-iottimeseries/api-iottimeseries-overview.html
+  - type: JSONSchema
+    url: json-schema/siemens-mindsphere-timeseries-schema.json
 name: Siemens MindSphere
 tags:
 - IoT
@@ -137,7 +221,20 @@ tags:
 - Industrial IoT
 - Insights Hub
 kind: contract
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: enterprise
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/siemens-mindsphere.png
 access: 3rd-Party
 created: '2024-11-08'
 modified: '2026-05-19'
