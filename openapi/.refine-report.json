@@ -1,0 +1,20 @@
+{
+  "provider": "siemens-mindsphere",
+  "sources": [
+    "siemens-mindsphere-aspect-types-api-openapi.yml",
+    "siemens-mindsphere-asset-types-api-openapi.yml",
+    "siemens-mindsphere-assets-api-openapi.yml",
+    "siemens-mindsphere-timeseries-api-openapi.yml"
+  ],
+  "outputs": [
+    "siemens-mindsphere-aspect-types-api-openapi.yml",
+    "siemens-mindsphere-asset-types-api-openapi.yml",
+    "siemens-mindsphere-assets-api-openapi.yml",
+    "siemens-mindsphere-timeseries-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
