@@ -103,8 +103,6 @@ apis:
       https://documentation.mindsphere.io/MindSphere/apis/advanced-assetmanagement/api-assetmanagement-overview.html
   - type: SpectralRules
     url: rules/siemens-mindsphere-rules.yml
-  - type: Capabilities
-    url: capabilities/industrial-iot-monitoring.yaml
   - type: JSONSchema
     url: json-schema/siemens-mindsphere-asset-schema.json
   - type: JSONLD
@@ -134,8 +132,6 @@ apis:
       https://documentation.mindsphere.io/MindSphere/apis/advanced-assetmanagement/api-assetmanagement-overview.html
   - type: SpectralRules
     url: rules/siemens-mindsphere-rules.yml
-  - type: Capabilities
-    url: capabilities/industrial-iot-monitoring.yaml
   - type: JSONSchema
     url: json-schema/siemens-mindsphere-asset-schema.json
   - type: JSONLD
@@ -165,8 +161,6 @@ apis:
       https://documentation.mindsphere.io/MindSphere/apis/advanced-assetmanagement/api-assetmanagement-overview.html
   - type: SpectralRules
     url: rules/siemens-mindsphere-rules.yml
-  - type: Capabilities
-    url: capabilities/industrial-iot-monitoring.yaml
   - type: JSONSchema
     url: json-schema/siemens-mindsphere-asset-schema.json
   - type: JSONLD
@@ -196,8 +190,6 @@ apis:
       https://documentation.mindsphere.io/MindSphere/apis/advanced-assetmanagement/api-assetmanagement-overview.html
   - type: SpectralRules
     url: rules/siemens-mindsphere-rules.yml
-  - type: Capabilities
-    url: capabilities/industrial-iot-monitoring.yaml
   - type: JSONSchema
     url: json-schema/siemens-mindsphere-asset-schema.json
   - type: JSONLD
