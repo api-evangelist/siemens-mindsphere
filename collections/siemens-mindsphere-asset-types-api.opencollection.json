@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Siemens MindSphere Asset Management Aspect Types Asset Types API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Asset Types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List asset types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.eu1.mindsphere.io/api/assetmanagement/v3/assettypes",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns available asset type definitions."
+        },
+        {
+          "info": {
+            "name": "Create an asset type",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://gateway.eu1.mindsphere.io/api/assetmanagement/v3/assettypes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new asset type with aspect associations and variable definitions."
+        },
+        {
+          "info": {
+            "name": "Retrieve an asset type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.eu1.mindsphere.io/api/assetmanagement/v3/assettypes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Asset type ID (tenant.name)"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific asset type."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

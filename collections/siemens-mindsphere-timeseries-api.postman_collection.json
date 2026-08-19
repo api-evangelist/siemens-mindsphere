@@ -1,0 +1,1428 @@
+{
+  "item": [
+    {
+      "id": "be3451bb-1e01-414c-9003-c6c0bf379852",
+      "name": "Timeseries",
+      "description": {
+        "content": "Time-series data read and write operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "175ca977-9f50-4dd3-8bd9-f7d563d191aa",
+          "name": "Ingest time-series data for multiple assets/aspects",
+          "request": {
+            "name": "Ingest time-series data for multiple assets/aspects",
+            "description": {
+              "content": "Creates or updates time-series data for multiple asset-aspect combinations in a single request. Each entry specifies an assetId, aspectName, and array of timestamped data points.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "timeseries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"assetId\": \"<uuid>\",\n    \"aspectName\": \"<string>\",\n    \"data\": [\n      {\n        \"_time\": \"<dateTime>\"\n      },\n      {\n        \"_time\": \"<dateTime>\"\n      }\n    ]\n  },\n  {\n    \"assetId\": \"<uuid>\",\n    \"aspectName\": \"<string>\",\n    \"data\": [\n      {\n        \"_time\": \"<dateTime>\"\n      },\n      {\n        \"_time\": \"<dateTime>\"\n      }\n    ]\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7f3391dd-78d9-40cb-8e7c-f5f34cc9033f",
+              "name": "Data ingested successfully (no content)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timeseries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"assetId\": \"3020a5b6-da53-98fc-3062-dd329eb49f52\",\n    \"aspectName\": \"string\",\n    \"data\": [\n      {\n        \"_time\": \"2026-01-01T00:00:00.000Z\"\n      },\n      {\n        \"_time\": \"2026-01-01T00:00:00.000Z\"\n      }\n    ]\n  },\n  {\n    \"assetId\": \"03df89a2-f629-b452-fc9c-c78acdee2c31\",\n    \"aspectName\": \"string\",\n    \"data\": [\n      {\n        \"_time\": \"2026-01-01T00:00:00.000Z\"\n      },\n      {\n        \"_time\": \"2026-01-01T00:00:00.000Z\"\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b6594d80-fb76-4be5-bccc-e96246aef7c4",
+              "name": "Validation error in request payload",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timeseries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"assetId\": \"3020a5b6-da53-98fc-3062-dd329eb49f52\",\n    \"aspectName\": \"string\",\n    \"data\": [\n      {\n        \"_time\": \"2026-01-01T00:00:00.000Z\"\n      },\n      {\n        \"_time\": \"2026-01-01T00:00:00.000Z\"\n      }\n    ]\n  },\n  {\n    \"assetId\": \"03df89a2-f629-b452-fc9c-c78acdee2c31\",\n    \"aspectName\": \"string\",\n    \"data\": [\n      {\n        \"_time\": \"2026-01-01T00:00:00.000Z\"\n      },\n      {\n        \"_time\": \"2026-01-01T00:00:00.000Z\"\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"name\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "291e5f06-d50f-44e3-93d4-ee6f3ee5b30e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timeseries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"assetId\": \"3020a5b6-da53-98fc-3062-dd329eb49f52\",\n    \"aspectName\": \"string\",\n    \"data\": [\n      {\n        \"_time\": \"2026-01-01T00:00:00.000Z\"\n      },\n      {\n        \"_time\": \"2026-01-01T00:00:00.000Z\"\n      }\n    ]\n  },\n  {\n    \"assetId\": \"03df89a2-f629-b452-fc9c-c78acdee2c31\",\n    \"aspectName\": \"string\",\n    \"data\": [\n      {\n        \"_time\": \"2026-01-01T00:00:00.000Z\"\n      },\n      {\n        \"_time\": \"2026-01-01T00:00:00.000Z\"\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"name\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "364f26f6-6dac-4923-9b36-d21bc1f390c0",
+              "name": "Forbidden — insufficient scope",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timeseries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"assetId\": \"3020a5b6-da53-98fc-3062-dd329eb49f52\",\n    \"aspectName\": \"string\",\n    \"data\": [\n      {\n        \"_time\": \"2026-01-01T00:00:00.000Z\"\n      },\n      {\n        \"_time\": \"2026-01-01T00:00:00.000Z\"\n      }\n    ]\n  },\n  {\n    \"assetId\": \"03df89a2-f629-b452-fc9c-c78acdee2c31\",\n    \"aspectName\": \"string\",\n    \"data\": [\n      {\n        \"_time\": \"2026-01-01T00:00:00.000Z\"\n      },\n      {\n        \"_time\": \"2026-01-01T00:00:00.000Z\"\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"name\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "da02477e-77f1-4ec3-9c8d-d22867d7f46c",
+          "name": "Ingest time-series data for a single asset aspect",
+          "request": {
+            "name": "Ingest time-series data for a single asset aspect",
+            "description": {
+              "content": "Creates or updates time-series data for a specific asset and aspect. Each data point must include a _time field (ISO 8601 UTC) and values for aspect variables.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "timeseries",
+                ":assetId",
+                ":aspectName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "assetId",
+                  "description": "(Required) Unique MindSphere asset identifier (UUID)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "aspectName",
+                  "description": "(Required) Aspect name (must match asset type aspect configuration)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"_time\": \"<dateTime>\"\n  },\n  {\n    \"_time\": \"<dateTime>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3303ba2a-41f5-40ea-9f04-c908c1dfdefd",
+              "name": "Data ingested successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timeseries",
+                    ":assetId",
+                    ":aspectName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "assetId",
+                      "description": "(Required) Unique MindSphere asset identifier (UUID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "aspectName",
+                      "description": "(Required) Aspect name (must match asset type aspect configuration)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"_time\": \"2026-01-01T00:00:00.000Z\"\n  },\n  {\n    \"_time\": \"2026-01-01T00:00:00.000Z\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "17b10e51-8707-4400-b5df-4c80ad3f1905",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timeseries",
+                    ":assetId",
+                    ":aspectName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "assetId",
+                      "description": "(Required) Unique MindSphere asset identifier (UUID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "aspectName",
+                      "description": "(Required) Aspect name (must match asset type aspect configuration)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"_time\": \"2026-01-01T00:00:00.000Z\"\n  },\n  {\n    \"_time\": \"2026-01-01T00:00:00.000Z\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"name\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0880d707-c917-4d53-b0fb-b902730d3adf",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timeseries",
+                    ":assetId",
+                    ":aspectName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "assetId",
+                      "description": "(Required) Unique MindSphere asset identifier (UUID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "aspectName",
+                      "description": "(Required) Aspect name (must match asset type aspect configuration)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"_time\": \"2026-01-01T00:00:00.000Z\"\n  },\n  {\n    \"_time\": \"2026-01-01T00:00:00.000Z\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "43370e7d-f8e8-4bf5-9dd4-6d0222c70484",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timeseries",
+                    ":assetId",
+                    ":aspectName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "assetId",
+                      "description": "(Required) Unique MindSphere asset identifier (UUID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "aspectName",
+                      "description": "(Required) Aspect name (must match asset type aspect configuration)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"_time\": \"2026-01-01T00:00:00.000Z\"\n  },\n  {\n    \"_time\": \"2026-01-01T00:00:00.000Z\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ad4fd635-68ea-4c95-9a1a-f5f6e63e6728",
+              "name": "Asset or aspect not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timeseries",
+                    ":assetId",
+                    ":aspectName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "assetId",
+                      "description": "(Required) Unique MindSphere asset identifier (UUID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "aspectName",
+                      "description": "(Required) Aspect name (must match asset type aspect configuration)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"_time\": \"2026-01-01T00:00:00.000Z\"\n  },\n  {\n    \"_time\": \"2026-01-01T00:00:00.000Z\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "13a4f381-0b5f-4c67-87bf-baeff3bce264",
+          "name": "Query time-series data for an asset aspect",
+          "request": {
+            "name": "Query time-series data for an asset aspect",
+            "description": {
+              "content": "Retrieves time-series data for a specific asset and aspect within a time range. Supports time range queries, field selection, and result limiting. Data is returned ordered by timestamp ascending.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "timeseries",
+                ":assetId",
+                ":aspectName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<dateTime>",
+                  "description": "(Required) Start of time range (ISO 8601 UTC)"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<dateTime>",
+                  "description": "(Required) End of time range (ISO 8601 UTC)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "2000",
+                  "description": "Maximum number of data points to return (max 2000)"
+                },
+                {
+                  "disabled": false,
+                  "key": "select",
+                  "value": "<string>",
+                  "description": "Comma-separated list of variable names to include"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "asc",
+                  "description": "Sort order by _time"
+                },
+                {
+                  "disabled": false,
+                  "key": "latestValue",
+                  "value": "false",
+                  "description": "Return only the most recent data point"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "assetId",
+                  "description": "(Required) Unique MindSphere asset identifier (UUID)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "aspectName",
+                  "description": "(Required) Aspect name (must match asset type aspect configuration)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "84f37d09-8a70-43a8-a9eb-7af5c613d561",
+              "name": "Time-series data points",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timeseries",
+                    ":assetId",
+                    ":aspectName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "2026-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "to",
+                      "value": "2026-01-01T01:00:00Z"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "2000"
+                    },
+                    {
+                      "key": "select",
+                      "value": "temperature,pressure"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "latestValue",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "assetId",
+                      "description": "(Required) Unique MindSphere asset identifier (UUID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "aspectName",
+                      "description": "(Required) Aspect name (must match asset type aspect configuration)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"_time\": \"2026-01-01T00:00:00.000Z\"\n  },\n  {\n    \"_time\": \"2026-01-01T00:00:00.000Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "028df894-2f34-4c36-b147-5cef7e6ca83c",
+              "name": "Invalid query parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timeseries",
+                    ":assetId",
+                    ":aspectName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "2026-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "to",
+                      "value": "2026-01-01T01:00:00Z"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "2000"
+                    },
+                    {
+                      "key": "select",
+                      "value": "temperature,pressure"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "latestValue",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "assetId",
+                      "description": "(Required) Unique MindSphere asset identifier (UUID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "aspectName",
+                      "description": "(Required) Aspect name (must match asset type aspect configuration)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"name\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a7a9476b-48a9-4c6a-9e3b-b170ea20c3ce",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timeseries",
+                    ":assetId",
+                    ":aspectName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "2026-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "to",
+                      "value": "2026-01-01T01:00:00Z"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "2000"
+                    },
+                    {
+                      "key": "select",
+                      "value": "temperature,pressure"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "latestValue",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "assetId",
+                      "description": "(Required) Unique MindSphere asset identifier (UUID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "aspectName",
+                      "description": "(Required) Aspect name (must match asset type aspect configuration)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b656caa7-e18c-4fa5-b761-495566afbfd0",
+              "name": "Asset or aspect not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timeseries",
+                    ":assetId",
+                    ":aspectName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "2026-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "to",
+                      "value": "2026-01-01T01:00:00Z"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "2000"
+                    },
+                    {
+                      "key": "select",
+                      "value": "temperature,pressure"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "latestValue",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "assetId",
+                      "description": "(Required) Unique MindSphere asset identifier (UUID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "aspectName",
+                      "description": "(Required) Aspect name (must match asset type aspect configuration)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ba70aa0a-7bcc-4586-9db4-c9b1586f48e1",
+          "name": "Delete time-series data for an asset aspect",
+          "request": {
+            "name": "Delete time-series data for an asset aspect",
+            "description": {
+              "content": "Deletes all time-series data within an hourly-aligned time range for a specific asset and aspect. The time range must align to UTC hour boundaries.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "timeseries",
+                ":assetId",
+                ":aspectName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<dateTime>",
+                  "description": "(Required) Start of hourly-aligned range (ISO 8601 UTC)"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<dateTime>",
+                  "description": "(Required) End of hourly-aligned range (ISO 8601 UTC)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "assetId",
+                  "description": "(Required) Unique MindSphere asset identifier (UUID)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "aspectName",
+                  "description": "(Required) Aspect name (must match asset type aspect configuration)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c8fdf015-8f87-4071-ab41-63038ee562e3",
+              "name": "Data deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timeseries",
+                    ":assetId",
+                    ":aspectName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "2026-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "to",
+                      "value": "2026-01-01T01:00:00Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "assetId",
+                      "description": "(Required) Unique MindSphere asset identifier (UUID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "aspectName",
+                      "description": "(Required) Aspect name (must match asset type aspect configuration)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d7a81b50-c5e0-4b69-a2c9-bc7ccfa8f5b6",
+              "name": "Invalid time range (not hour-aligned or invalid format)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timeseries",
+                    ":assetId",
+                    ":aspectName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "2026-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "to",
+                      "value": "2026-01-01T01:00:00Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "assetId",
+                      "description": "(Required) Unique MindSphere asset identifier (UUID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "aspectName",
+                      "description": "(Required) Aspect name (must match asset type aspect configuration)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"name\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "342e2cef-44c0-4387-a972-2de62ee56dd8",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timeseries",
+                    ":assetId",
+                    ":aspectName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "2026-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "to",
+                      "value": "2026-01-01T01:00:00Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "assetId",
+                      "description": "(Required) Unique MindSphere asset identifier (UUID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "aspectName",
+                      "description": "(Required) Aspect name (must match asset type aspect configuration)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f30ccc32-0d53-4aa8-a55b-164b290e6088",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "timeseries",
+                    ":assetId",
+                    ":aspectName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "2026-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "to",
+                      "value": "2026-01-01T01:00:00Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "assetId",
+                      "description": "(Required) Unique MindSphere asset identifier (UUID)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "aspectName",
+                      "description": "(Required) Aspect name (must match asset type aspect configuration)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://gateway.eu1.mindsphere.io/api/assetmanagement/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1628ec82-e60f-458d-bcca-c1a38680b2e4",
+    "name": "Siemens MindSphere Asset Management Aspect Types Timeseries API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The MindSphere Asset Management API enables creating and managing assets, defining aspect types and asset types, configuring data models, and handling connectivity for IoT devices. Supports hierarchical asset structures for digital twin modeling of industrial equipment.\n\nContact Support:\n Name: Siemens MindSphere Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

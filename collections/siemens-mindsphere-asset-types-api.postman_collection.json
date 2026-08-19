@@ -1,0 +1,382 @@
+{
+  "item": [
+    {
+      "id": "3a3b31b4-c296-4e7d-bf4b-d28701c14f72",
+      "name": "Asset Types",
+      "description": {
+        "content": "Asset type definition management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cf755c48-3fdc-4acf-a113-8fd54dba8bac",
+          "name": "List asset types",
+          "request": {
+            "name": "List asset types",
+            "description": {
+              "content": "Returns available asset type definitions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assettypes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "10"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "10fb1c6c-ff4f-4346-af62-36acc1a12d1a",
+              "name": "List of asset types",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assettypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"assetTypes\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"parentTypeId\": \"string\",\n        \"instantiable\": true,\n        \"scope\": \"private\",\n        \"aspects\": [\n          {\n            \"name\": \"string\",\n            \"aspectTypeId\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"aspectTypeId\": \"string\"\n          }\n        ],\n        \"variables\": [\n          {\n            \"name\": \"string\",\n            \"dataType\": \"BIG_STRING\",\n            \"unit\": \"string\",\n            \"searchable\": false,\n            \"length\": 4860,\n            \"defaultValue\": 8600.49322185307,\n            \"qualityCode\": false\n          },\n          {\n            \"name\": \"string\",\n            \"dataType\": \"TIMESTAMP\",\n            \"unit\": \"string\",\n            \"searchable\": false,\n            \"length\": 2753,\n            \"defaultValue\": 1058.734374395278,\n            \"qualityCode\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"parentTypeId\": \"string\",\n        \"instantiable\": true,\n        \"scope\": \"private\",\n        \"aspects\": [\n          {\n            \"name\": \"string\",\n            \"aspectTypeId\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"aspectTypeId\": \"string\"\n          }\n        ],\n        \"variables\": [\n          {\n            \"name\": \"string\",\n            \"dataType\": \"STRING\",\n            \"unit\": \"string\",\n            \"searchable\": false,\n            \"length\": 4856,\n            \"defaultValue\": 7352.59088794809,\n            \"qualityCode\": false\n          },\n          {\n            \"name\": \"string\",\n            \"dataType\": \"INT\",\n            \"unit\": \"string\",\n            \"searchable\": false,\n            \"length\": 8013,\n            \"defaultValue\": 2062.0247341354293,\n            \"qualityCode\": true\n          }\n        ]\n      }\n    ]\n  },\n  \"page\": {\n    \"size\": 5027,\n    \"totalElements\": 3499,\n    \"totalPages\": 7032,\n    \"number\": 9421\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dffa9f0b-bc50-4d52-abfc-d88bf134ddc0",
+          "name": "Create an asset type",
+          "request": {
+            "name": "Create an asset type",
+            "description": {
+              "content": "Creates a new asset type with aspect associations and variable definitions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assettypes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"parentTypeId\": \"<string>\",\n  \"instantiable\": true,\n  \"scope\": \"<string>\",\n  \"aspects\": [\n    {\n      \"name\": \"<string>\",\n      \"aspectTypeId\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"aspectTypeId\": \"<string>\"\n    }\n  ],\n  \"variables\": [\n    {\n      \"name\": \"<string>\",\n      \"dataType\": \"<string>\",\n      \"unit\": \"<string>\",\n      \"searchable\": false,\n      \"length\": \"<integer>\",\n      \"defaultValue\": \"<number>\",\n      \"qualityCode\": \"<boolean>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"dataType\": \"<string>\",\n      \"unit\": \"<string>\",\n      \"searchable\": false,\n      \"length\": \"<integer>\",\n      \"defaultValue\": \"<number>\",\n      \"qualityCode\": \"<boolean>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3c32ff7a-5e57-49b1-96ee-066af5c1033d",
+              "name": "Asset type created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assettypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"parentTypeId\": \"<string>\",\n  \"instantiable\": true,\n  \"scope\": \"<string>\",\n  \"aspects\": [\n    {\n      \"name\": \"<string>\",\n      \"aspectTypeId\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"aspectTypeId\": \"<string>\"\n    }\n  ],\n  \"variables\": [\n    {\n      \"name\": \"string\",\n      \"dataType\": \"BOOLEAN\",\n      \"unit\": \"string\",\n      \"searchable\": false,\n      \"length\": 1927,\n      \"defaultValue\": 2758.3627744970895,\n      \"qualityCode\": true\n    },\n    {\n      \"name\": \"string\",\n      \"dataType\": \"LONG\",\n      \"unit\": \"string\",\n      \"searchable\": false,\n      \"length\": 7754,\n      \"defaultValue\": 9338.801891667348,\n      \"qualityCode\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"parentTypeId\": \"string\",\n  \"instantiable\": false,\n  \"scope\": \"private\",\n  \"aspects\": [\n    {\n      \"name\": \"string\",\n      \"aspectTypeId\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"aspectTypeId\": \"string\"\n    }\n  ],\n  \"variables\": [\n    {\n      \"name\": \"string\",\n      \"dataType\": \"STRING\",\n      \"unit\": \"string\",\n      \"searchable\": false,\n      \"length\": 2151,\n      \"defaultValue\": 373.916541421212,\n      \"qualityCode\": true\n    },\n    {\n      \"name\": \"string\",\n      \"dataType\": \"LONG\",\n      \"unit\": \"string\",\n      \"searchable\": false,\n      \"length\": 9279,\n      \"defaultValue\": 934.6781199771292,\n      \"qualityCode\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "142e8a9f-c551-4192-a37e-aa1447a6da28",
+          "name": "Retrieve an asset type",
+          "request": {
+            "name": "Retrieve an asset type",
+            "description": {
+              "content": "Returns details for a specific asset type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assettypes",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Asset type ID (tenant.name)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0eea7d71-f3cc-4342-b7e5-cfc721e01e4f",
+              "name": "Asset type details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assettypes",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Asset type ID (tenant.name)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"parentTypeId\": \"string\",\n  \"instantiable\": false,\n  \"scope\": \"private\",\n  \"aspects\": [\n    {\n      \"name\": \"string\",\n      \"aspectTypeId\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"aspectTypeId\": \"string\"\n    }\n  ],\n  \"variables\": [\n    {\n      \"name\": \"string\",\n      \"dataType\": \"STRING\",\n      \"unit\": \"string\",\n      \"searchable\": false,\n      \"length\": 2151,\n      \"defaultValue\": 373.916541421212,\n      \"qualityCode\": true\n    },\n    {\n      \"name\": \"string\",\n      \"dataType\": \"LONG\",\n      \"unit\": \"string\",\n      \"searchable\": false,\n      \"length\": 9279,\n      \"defaultValue\": 934.6781199771292,\n      \"qualityCode\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "83a6226e-43c6-4fe2-b9d5-58967125506f",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assettypes",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Asset type ID (tenant.name)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://gateway.eu1.mindsphere.io/api/assetmanagement/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9a0c6a55-c266-4a75-9f85-091e346e0dc7",
+    "name": "Siemens MindSphere Asset Management Aspect Types Asset Types API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The MindSphere Asset Management API enables creating and managing assets, defining aspect types and asset types, configuring data models, and handling connectivity for IoT devices. Supports hierarchical asset structures for digital twin modeling of industrial equipment.\n\nContact Support:\n Name: Siemens MindSphere Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

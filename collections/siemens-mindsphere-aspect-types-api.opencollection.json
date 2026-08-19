@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Siemens MindSphere Asset Management Aspect Types API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Aspect Types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List aspect types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.eu1.mindsphere.io/api/assetmanagement/v3/aspecttypes",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns all aspect type definitions (data model templates)."
+        },
+        {
+          "info": {
+            "name": "Create an aspect type",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://gateway.eu1.mindsphere.io/api/assetmanagement/v3/aspecttypes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new aspect type defining a group of related variables for telemetry data. Variables are typed (DOUBLE, LONG, BOOLEAN, STRING, etc.) with optional units and default values."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,238 @@
+{
+  "item": [
+    {
+      "id": "cab41d57-3ecb-42f8-90e9-300839c4d788",
+      "name": "Aspect Types",
+      "description": {
+        "content": "Aspect type (data model template) management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9acdfa5f-c516-469d-840b-25a167bdaafb",
+          "name": "List aspect types",
+          "request": {
+            "name": "List aspect types",
+            "description": {
+              "content": "Returns all aspect type definitions (data model templates).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "aspecttypes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "10"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "77bec83f-2aa4-4d9d-83dd-5e8a6f65e17c",
+              "name": "List of aspect types",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aspecttypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"aspectTypes\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"category\": \"dynamic\",\n        \"scope\": \"public\",\n        \"variables\": [\n          {\n            \"name\": \"string\",\n            \"dataType\": \"BOOLEAN\",\n            \"unit\": \"string\",\n            \"searchable\": false,\n            \"length\": 7592,\n            \"defaultValue\": 3099.2382111107972,\n            \"qualityCode\": true\n          },\n          {\n            \"name\": \"string\",\n            \"dataType\": \"DOUBLE\",\n            \"unit\": \"string\",\n            \"searchable\": false,\n            \"length\": 1613,\n            \"defaultValue\": 162.51593420906985,\n            \"qualityCode\": false\n          }\n        ]\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"category\": \"dynamic\",\n        \"scope\": \"private\",\n        \"variables\": [\n          {\n            \"name\": \"string\",\n            \"dataType\": \"TIMESTAMP\",\n            \"unit\": \"string\",\n            \"searchable\": false,\n            \"length\": 3321,\n            \"defaultValue\": 1298.1016845901872,\n            \"qualityCode\": true\n          },\n          {\n            \"name\": \"string\",\n            \"dataType\": \"BIG_STRING\",\n            \"unit\": \"string\",\n            \"searchable\": false,\n            \"length\": 1838,\n            \"defaultValue\": 6375.811118663765,\n            \"qualityCode\": true\n          }\n        ]\n      }\n    ]\n  },\n  \"page\": {\n    \"size\": 4845,\n    \"totalElements\": 4153,\n    \"totalPages\": 1491,\n    \"number\": 2193\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dbdbdb6a-e990-46fe-95a6-0499a97ce48f",
+          "name": "Create an aspect type",
+          "request": {
+            "name": "Create an aspect type",
+            "description": {
+              "content": "Creates a new aspect type defining a group of related variables for telemetry data. Variables are typed (DOUBLE, LONG, BOOLEAN, STRING, etc.) with optional units and default values.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "aspecttypes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"category\": \"<string>\",\n  \"variables\": [\n    {\n      \"name\": \"<string>\",\n      \"dataType\": \"<string>\",\n      \"unit\": \"<string>\",\n      \"searchable\": false,\n      \"length\": \"<integer>\",\n      \"defaultValue\": \"<number>\",\n      \"qualityCode\": \"<boolean>\"\n    }\n  ],\n  \"description\": \"<string>\",\n  \"scope\": \"private\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c6b85912-b541-4043-a3b6-bbb8031d2064",
+              "name": "Aspect type created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aspecttypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"category\": \"<string>\",\n  \"variables\": [\n    {\n      \"name\": \"string\",\n      \"dataType\": \"BOOLEAN\",\n      \"unit\": \"string\",\n      \"searchable\": false,\n      \"length\": 2105,\n      \"defaultValue\": 7582.080698801828,\n      \"qualityCode\": true\n    }\n  ],\n  \"description\": \"<string>\",\n  \"scope\": \"private\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"category\": \"static\",\n  \"scope\": \"public\",\n  \"variables\": [\n    {\n      \"name\": \"string\",\n      \"dataType\": \"LONG\",\n      \"unit\": \"string\",\n      \"searchable\": false,\n      \"length\": 5841,\n      \"defaultValue\": 5045.312610815496,\n      \"qualityCode\": true\n    },\n    {\n      \"name\": \"string\",\n      \"dataType\": \"BOOLEAN\",\n      \"unit\": \"string\",\n      \"searchable\": false,\n      \"length\": 9574,\n      \"defaultValue\": 561.3148388730139,\n      \"qualityCode\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://gateway.eu1.mindsphere.io/api/assetmanagement/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "28d4a459-a192-4297-b661-a782141c852e",
+    "name": "Siemens MindSphere Asset Management Aspect Types API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The MindSphere Asset Management API enables creating and managing assets, defining aspect types and asset types, configuring data models, and handling connectivity for IoT devices. Supports hierarchical asset structures for digital twin modeling of industrial equipment.\n\nContact Support:\n Name: Siemens MindSphere Developer Support",
+      "type": "text/plain"
+    }
+  }
+}
