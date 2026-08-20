@@ -6,6 +6,11 @@ apis:
   tags:
   - Identity
   - Access Management
+  - User
+  - Industrial
+  tags_raw:
+  - Identity
+  - Access Management
   - Users
   - Industrial
   humanURL: >-
@@ -37,6 +42,11 @@ apis:
   name: Siemens MindSphere Event Management API
   tags:
   - IoT
+  - Event
+  - Alerts
+  - Industrial
+  tags_raw:
+  - IoT
   - Events
   - Alerts
   - Industrial
@@ -53,6 +63,11 @@ apis:
 - aid: siemens-mindsphere:agent-management-api
   name: Siemens MindSphere Agent Management API
   tags:
+  - IoT
+  - Connectivity
+  - Agents
+  - Industrial
+  tags_raw:
   - IoT
   - Connectivity
   - Agent
@@ -181,6 +196,8 @@ apis:
     https://documentation.mindsphere.io/MindSphere/apis/advanced-assetmanagement/api-assetmanagement-overview.html
   baseURL: https://gateway.eu1.mindsphere.io/api/assetmanagement/v3
   tags:
+  - Time Series
+  tags_raw:
   - Timeseries
   properties:
   - type: OpenAPI
