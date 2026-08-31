@@ -196,7 +196,7 @@ apis:
     https://documentation.mindsphere.io/MindSphere/apis/advanced-assetmanagement/api-assetmanagement-overview.html
   baseURL: https://gateway.eu1.mindsphere.io/api/assetmanagement/v3
   tags:
-  - Time Series
+  - Timeseries
   tags_raw:
   - Timeseries
   properties:
