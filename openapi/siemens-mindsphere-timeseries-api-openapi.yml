@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Siemens MindSphere Asset Management Aspect Types Timeseries API
   description: The MindSphere Asset Management API enables creating and managing assets, defining aspect types and asset types, configuring data models, and handling connectivity for IoT devices. Supports hierarchical asset structures for digital twin modeling of industrial equipment.
@@ -200,6 +200,22 @@ paths:
           description: Forbidden
 components:
   schemas:
+    TimeseriesInput:
+      type: object
+      required:
+      - assetId
+      - aspectName
+      - data
+      properties:
+        assetId:
+          type: string
+          format: uuid
+        aspectName:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimeseriesDataPoint'
     TimeseriesDataPoint:
       type: object
       required:
@@ -217,22 +233,6 @@ components:
         - type: boolean
         - type: string
         - type: 'null'
-    TimeseriesInput:
-      type: object
-      required:
-      - assetId
-      - aspectName
-      - data
-      properties:
-        assetId:
-          type: string
-          format: uuid
-        aspectName:
-          type: string
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TimeseriesDataPoint'
     ErrorResponse:
       type: object
       properties:

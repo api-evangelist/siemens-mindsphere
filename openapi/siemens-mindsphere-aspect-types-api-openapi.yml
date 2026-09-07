@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Siemens MindSphere Asset Management Aspect Types API
   description: The MindSphere Asset Management API enables creating and managing assets, defining aspect types and asset types, configuring data models, and handling connectivity for IoT devices. Supports hierarchical asset structures for digital twin modeling of industrial equipment.
@@ -60,6 +60,31 @@ paths:
                 $ref: '#/components/schemas/AspectType'
 components:
   schemas:
+    AspectType:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Aspect type identifier (tenant.name)
+        name:
+          type: string
+        description:
+          type: string
+        category:
+          type: string
+          enum:
+          - static
+          - dynamic
+          description: static=configuration data, dynamic=time-series telemetry
+        scope:
+          type: string
+          enum:
+          - private
+          - public
+        variables:
+          type: array
+          items:
+            $ref: '#/components/schemas/VariableDefinition'
     VariableDefinition:
       type: object
       required:
@@ -124,17 +149,6 @@ components:
           minItems: 1
           items:
             $ref: '#/components/schemas/VariableDefinition'
-    PageMetadata:
-      type: object
-      properties:
-        size:
-          type: integer
-        totalElements:
-          type: integer
-        totalPages:
-          type: integer
-        number:
-          type: integer
     AspectTypeListResponse:
       type: object
       properties:
@@ -147,31 +161,17 @@ components:
                 $ref: '#/components/schemas/AspectType'
         page:
           $ref: '#/components/schemas/PageMetadata'
-    AspectType:
+    PageMetadata:
       type: object
       properties:
-        id:
-          type: string
-          description: Aspect type identifier (tenant.name)
-        name:
-          type: string
-        description:
-          type: string
-        category:
-          type: string
-          enum:
-          - static
-          - dynamic
-          description: static=configuration data, dynamic=time-series telemetry
-        scope:
-          type: string
-          enum:
-          - private
-          - public
-        variables:
-          type: array
-          items:
-            $ref: '#/components/schemas/VariableDefinition'
+        size:
+          type: integer
+        totalElements:
+          type: integer
+        totalPages:
+          type: integer
+        number:
+          type: integer
   securitySchemes:
     BearerAuth:
       type: http

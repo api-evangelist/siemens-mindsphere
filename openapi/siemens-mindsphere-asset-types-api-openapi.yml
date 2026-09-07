@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Siemens MindSphere Asset Management Aspect Types Asset Types API
   description: The MindSphere Asset Management API enables creating and managing assets, defining aspect types and asset types, configuring data models, and handling connectivity for IoT devices. Supports hierarchical asset structures for digital twin modeling of industrial equipment.
@@ -143,40 +143,6 @@ components:
           type: integer
         number:
           type: integer
-    AssetType:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Asset type identifier (tenant.name)
-        name:
-          type: string
-        description:
-          type: string
-        parentTypeId:
-          type: string
-          description: Parent asset type for inheritance
-        instantiable:
-          type: boolean
-          description: Whether assets can be directly instantiated from this type
-        scope:
-          type: string
-          enum:
-          - private
-          - public
-        aspects:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              aspectTypeId:
-                type: string
-        variables:
-          type: array
-          items:
-            $ref: '#/components/schemas/VariableDefinition'
     AssetTypeCreate:
       type: object
       required:
@@ -203,6 +169,40 @@ components:
             required:
             - name
             - aspectTypeId
+            properties:
+              name:
+                type: string
+              aspectTypeId:
+                type: string
+        variables:
+          type: array
+          items:
+            $ref: '#/components/schemas/VariableDefinition'
+    AssetType:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Asset type identifier (tenant.name)
+        name:
+          type: string
+        description:
+          type: string
+        parentTypeId:
+          type: string
+          description: Parent asset type for inheritance
+        instantiable:
+          type: boolean
+          description: Whether assets can be directly instantiated from this type
+        scope:
+          type: string
+          enum:
+          - private
+          - public
+        aspects:
+          type: array
+          items:
+            type: object
             properties:
               name:
                 type: string
