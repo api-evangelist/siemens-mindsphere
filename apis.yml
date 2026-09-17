@@ -189,19 +189,17 @@ apis:
       https://documentation.mindsphere.io/MindSphere/apis/iot-iottimeseries/api-iottimeseries-overview.html
   - type: JSONSchema
     url: json-schema/siemens-mindsphere-timeseries-schema.json
-- aid: siemens-mindsphere:siemens-mindsphere-timeseries-api
-  name: Siemens MindSphere Timeseries API
+- aid: siemens-mindsphere:siemens-mindsphere-time-series-api
+  name: Siemens MindSphere Time Series API
   description: Time-series data read and write operations
   humanURL: >-
-    https://documentation.mindsphere.io/MindSphere/apis/advanced-assetmanagement/api-assetmanagement-overview.html
+    https://documentation.mindsphere.io/MindSphere/apis/core-identitymanagement/api-identitymanagement-overview.html
   baseURL: https://gateway.eu1.mindsphere.io/api/assetmanagement/v3
   tags:
   - Time Series
-  tags_raw:
-  - Timeseries
   properties:
   - type: OpenAPI
-    url: openapi/siemens-mindsphere-timeseries-api-openapi.yml
+    url: openapi/siemens-mindsphere-time-series-api-openapi.yml
   - type: Documentation
     url: >-
       https://documentation.mindsphere.io/MindSphere/apis/advanced-assetmanagement/api-assetmanagement-overview.html
