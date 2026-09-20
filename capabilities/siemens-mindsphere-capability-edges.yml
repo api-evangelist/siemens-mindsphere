@@ -25,7 +25,8 @@ edges:
   reason: CRUD over industrial asset records with location, hierarchy and aspect references — maintenance
     of asset master data / technical asset information for the installed equipment base.
 - tag: Timeseries
-  spec_file: siemens-mindsphere-timeseries-api-openapi.yml
+  spec_file: siemens-mindsphere-time-series-api-openapi.yml
+  reanchored_from: siemens-mindsphere-timeseries-api-openapi.yml
   capability_id: BC-1010.60
   capability_id_l1: BC-1010
   capability_name: Manufacturing Data Acquisition Management
