@@ -1,0 +1,37 @@
+slug: siemens-mindsphere
+provider: Siemens MindSphere
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Manufacturing & Industrial
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Assets
+  spec_file: siemens-mindsphere-assets-api-openapi.yml
+  capability_id: BC-1040.40
+  capability_id_l1: BC-1040
+  capability_name: Asset Information Management
+  confidence: 0.8
+  evidence: '"POST /assets  createAsset  Create a new asset"; "PATCH /assets/{assetId}  updateAsset";
+    schemas "Location", "AspectRef"; "hierarchical asset structures for digital twin modeling of industrial
+    equipment"'
+  reason: CRUD over industrial asset records with location, hierarchy and aspect references — maintenance
+    of asset master data / technical asset information for the installed equipment base.
+- tag: Timeseries
+  spec_file: siemens-mindsphere-timeseries-api-openapi.yml
+  capability_id: BC-1010.60
+  capability_id_l1: BC-1010
+  capability_name: Manufacturing Data Acquisition Management
+  confidence: 0.7
+  evidence: '"PUT /timeseries  Ingest time-series data for multiple assets/aspects"; "GET /timeseries/{assetId}/{aspectName}  Query
+    time-series data"; vendor "connects industrial machines and assets to the cloud"'
+  reason: Ingestion and query of sensor/machine time-series from industrial equipment is manufacturing
+    data acquisition (OT-IT integration). Could alternatively be read as asset performance data, hence
+    0.7.
