@@ -1,18 +1,18 @@
 openapi: 3.2.0
 info:
-  title: Siemens MindSphere Asset Management Aspect Types Timeseries API
-  description: The MindSphere Asset Management API enables creating and managing assets, defining aspect types and asset types, configuring data models, and handling connectivity for IoT devices. Supports hierarchical asset structures for digital twin modeling of industrial equipment.
+  title: Siemens MindSphere IoT Time Series Timeseries API
+  description: The MindSphere IoT Time Series API enables storing, querying, and retrieving time-series telemetry data from industrial equipment and IoT assets. Supports high-frequency data ingestion (up to 1 Hz), bulk imports, and time-range queries for sensor and machine data organized by asset and aspect.
   version: '3.0'
   contact:
     name: Siemens MindSphere Developer Support
-    url: https://documentation.mindsphere.io/MindSphere/apis/advanced-assetmanagement/api-assetmanagement-overview.html
+    url: https://documentation.mindsphere.io/MindSphere/apis/iot-timeseries/api-timeseries-overview.html
 servers:
-- url: https://gateway.eu1.mindsphere.io/api/assetmanagement/v3
-  description: MindSphere Asset Management EU1
+- url: https://gateway.eu1.mindsphere.io/api/iottimeseries/v3
+  description: MindSphere EU1 Region
 security:
 - BearerAuth: []
 tags:
-- name: Timeseries
+- name: Time Series
   description: Time-series data read and write operations
 paths:
   /timeseries:
@@ -21,7 +21,7 @@ paths:
       summary: Ingest time-series data for multiple assets/aspects
       description: Creates or updates time-series data for multiple asset-aspect combinations in a single request. Each entry specifies an assetId, aspectName, and array of timestamped data points.
       tags:
-      - Timeseries
+      - Time Series
       requestBody:
         required: true
         content:
@@ -57,7 +57,7 @@ paths:
       summary: Ingest time-series data for a single asset aspect
       description: Creates or updates time-series data for a specific asset and aspect. Each data point must include a _time field (ISO 8601 UTC) and values for aspect variables.
       tags:
-      - Timeseries
+      - Time Series
       parameters:
       - $ref: '#/components/parameters/AssetId'
       - $ref: '#/components/parameters/AspectName'
@@ -89,7 +89,7 @@ paths:
       summary: Query time-series data for an asset aspect
       description: Retrieves time-series data for a specific asset and aspect within a time range. Supports time range queries, field selection, and result limiting. Data is returned ordered by timestamp ascending.
       tags:
-      - Timeseries
+      - Time Series
       parameters:
       - $ref: '#/components/parameters/AssetId'
       - $ref: '#/components/parameters/AspectName'
@@ -165,7 +165,7 @@ paths:
       summary: Delete time-series data for an asset aspect
       description: Deletes all time-series data within an hourly-aligned time range for a specific asset and aspect. The time range must align to UTC hour boundaries.
       tags:
-      - Timeseries
+      - Time Series
       parameters:
       - $ref: '#/components/parameters/AssetId'
       - $ref: '#/components/parameters/AspectName'
@@ -199,6 +199,24 @@ paths:
         '403':
           description: Forbidden
 components:
+  parameters:
+    AspectName:
+      name: aspectName
+      in: path
+      required: true
+      description: Aspect name (must match asset type aspect configuration)
+      schema:
+        type: string
+      example: EnvironmentData
+    AssetId:
+      name: assetId
+      in: path
+      required: true
+      description: Unique MindSphere asset identifier (UUID)
+      schema:
+        type: string
+        format: uuid
+      example: 5d7e59d0-8c94-4bce-8a0c-3a7fcc9a1234
   schemas:
     TimeseriesInput:
       type: object
@@ -250,26 +268,9 @@ components:
                 type: string
               message:
                 type: string
-  parameters:
-    AssetId:
-      name: assetId
-      in: path
-      required: true
-      description: Unique MindSphere asset identifier (UUID)
-      schema:
-        type: string
-        format: uuid
-      example: 5d7e59d0-8c94-4bce-8a0c-3a7fcc9a1234
-    AspectName:
-      name: aspectName
-      in: path
-      required: true
-      description: Aspect name (must match asset type aspect configuration)
-      schema:
-        type: string
-      example: EnvironmentData
   securitySchemes:
     BearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
+      description: MindSphere Bearer token from OAuth2 token endpoint

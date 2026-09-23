@@ -1,10 +1,8 @@
 {
   "provider": "siemens-mindsphere",
   "sources": [
-    "siemens-mindsphere-aspect-types-api-openapi.yml",
-    "siemens-mindsphere-asset-types-api-openapi.yml",
-    "siemens-mindsphere-assets-api-openapi.yml",
-    "siemens-mindsphere-timeseries-api-openapi.yml"
+    "_original/siemens-mindsphere-asset-management-openapi.yml",
+    "_original/siemens-mindsphere-iot-timeseries-openapi.yml"
   ],
   "outputs": [
     "siemens-mindsphere-aspect-types-api-openapi.yml",
@@ -12,15 +10,22 @@
     "siemens-mindsphere-assets-api-openapi.yml",
     "siemens-mindsphere-timeseries-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
   "notes": [
-    "siemens-mindsphere-aspect-types-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "siemens-mindsphere-asset-types-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "siemens-mindsphere-assets-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "siemens-mindsphere-timeseries-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "apis.yml register: already-registered"
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "siemens-mindsphere-asset-management-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "siemens-mindsphere-iot-timeseries-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "superseded outputs removed: siemens-mindsphere-time-series-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 9 total)"
   ],
-  "skipped": []
+  "skipped": [
+    "siemens-mindsphere-aspect-types-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "siemens-mindsphere-asset-types-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "siemens-mindsphere-assets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "siemens-mindsphere-time-series-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

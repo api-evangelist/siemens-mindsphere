@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Siemens MindSphere Asset Management Aspect Types Assets API
+  title: Siemens MindSphere Asset Management Assets API
   description: The MindSphere Asset Management API enables creating and managing assets, defining aspect types and asset types, configuring data models, and handling connectivity for IoT devices. Supports hierarchical asset structures for digital twin modeling of industrial equipment.
   version: '3.0'
   contact:
@@ -151,6 +151,112 @@ paths:
           description: Conflict
 components:
   schemas:
+    AssetUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        timezone:
+          type: string
+        location:
+          $ref: '#/components/schemas/Location'
+        variables:
+          type: array
+          items:
+            $ref: '#/components/schemas/VariableValue'
+    HALLinks:
+      type: object
+      additionalProperties:
+        type: object
+        properties:
+          href:
+            type: string
+            format: uri
+    AspectRef:
+      type: object
+      properties:
+        name:
+          type: string
+        aspectTypeId:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              message:
+                type: string
+    AssetListResponse:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            assets:
+              type: array
+              items:
+                $ref: '#/components/schemas/Asset'
+        page:
+          $ref: '#/components/schemas/PageMetadata'
+        _links:
+          $ref: '#/components/schemas/HALLinks'
+    AssetCreate:
+      type: object
+      required:
+      - name
+      - typeId
+      properties:
+        name:
+          type: string
+          maxLength: 128
+        externalId:
+          type: string
+          description: External identifier for the asset
+        description:
+          type: string
+          maxLength: 2048
+        typeId:
+          type: string
+        parentId:
+          type: string
+          format: uuid
+        timezone:
+          type: string
+          default: Europe/Berlin
+        twinType:
+          type: string
+          enum:
+          - performance
+          - simulation
+          - shop_floor
+        location:
+          $ref: '#/components/schemas/Location'
+        variables:
+          type: array
+          items:
+            $ref: '#/components/schemas/VariableValue'
+    PageMetadata:
+      type: object
+      properties:
+        size:
+          type: integer
+        totalElements:
+          type: integer
+        totalPages:
+          type: integer
+        number:
+          type: integer
     Location:
       type: object
       properties:
@@ -225,14 +331,6 @@ components:
         updatedAt:
           type: string
           format: date-time
-    HALLinks:
-      type: object
-      additionalProperties:
-        type: object
-        properties:
-          href:
-            type: string
-            format: uri
     VariableValue:
       type: object
       required:
@@ -247,104 +345,6 @@ components:
           - type: string
           - type: boolean
           - type: 'null'
-    AspectRef:
-      type: object
-      properties:
-        name:
-          type: string
-        aspectTypeId:
-          type: string
-    PageMetadata:
-      type: object
-      properties:
-        size:
-          type: integer
-        totalElements:
-          type: integer
-        totalPages:
-          type: integer
-        number:
-          type: integer
-    AssetCreate:
-      type: object
-      required:
-      - name
-      - typeId
-      properties:
-        name:
-          type: string
-          maxLength: 128
-        externalId:
-          type: string
-          description: External identifier for the asset
-        description:
-          type: string
-          maxLength: 2048
-        typeId:
-          type: string
-        parentId:
-          type: string
-          format: uuid
-        timezone:
-          type: string
-          default: Europe/Berlin
-        twinType:
-          type: string
-          enum:
-          - performance
-          - simulation
-          - shop_floor
-        location:
-          $ref: '#/components/schemas/Location'
-        variables:
-          type: array
-          items:
-            $ref: '#/components/schemas/VariableValue'
-    AssetUpdate:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        timezone:
-          type: string
-        location:
-          $ref: '#/components/schemas/Location'
-        variables:
-          type: array
-          items:
-            $ref: '#/components/schemas/VariableValue'
-    AssetListResponse:
-      type: object
-      properties:
-        _embedded:
-          type: object
-          properties:
-            assets:
-              type: array
-              items:
-                $ref: '#/components/schemas/Asset'
-        page:
-          $ref: '#/components/schemas/PageMetadata'
-        _links:
-          $ref: '#/components/schemas/HALLinks'
-    ErrorResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        message:
-          type: string
-        details:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              message:
-                type: string
   parameters:
     AssetId:
       name: assetId

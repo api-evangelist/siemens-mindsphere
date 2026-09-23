@@ -60,6 +60,33 @@ paths:
                 $ref: '#/components/schemas/AspectType'
 components:
   schemas:
+    AspectTypeCreate:
+      type: object
+      required:
+      - name
+      - category
+      - variables
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        category:
+          type: string
+          enum:
+          - static
+          - dynamic
+        scope:
+          type: string
+          enum:
+          - private
+          - public
+          default: private
+        variables:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/VariableDefinition'
     AspectType:
       type: object
       properties:
@@ -85,6 +112,29 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/VariableDefinition'
+    AspectTypeListResponse:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            aspectTypes:
+              type: array
+              items:
+                $ref: '#/components/schemas/AspectType'
+        page:
+          $ref: '#/components/schemas/PageMetadata'
+    PageMetadata:
+      type: object
+      properties:
+        size:
+          type: integer
+        totalElements:
+          type: integer
+        totalPages:
+          type: integer
+        number:
+          type: integer
     VariableDefinition:
       type: object
       required:
@@ -122,56 +172,6 @@ components:
         qualityCode:
           type: boolean
           description: Whether OPC-UA quality codes are supported
-    AspectTypeCreate:
-      type: object
-      required:
-      - name
-      - category
-      - variables
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        category:
-          type: string
-          enum:
-          - static
-          - dynamic
-        scope:
-          type: string
-          enum:
-          - private
-          - public
-          default: private
-        variables:
-          type: array
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/VariableDefinition'
-    AspectTypeListResponse:
-      type: object
-      properties:
-        _embedded:
-          type: object
-          properties:
-            aspectTypes:
-              type: array
-              items:
-                $ref: '#/components/schemas/AspectType'
-        page:
-          $ref: '#/components/schemas/PageMetadata'
-    PageMetadata:
-      type: object
-      properties:
-        size:
-          type: integer
-        totalElements:
-          type: integer
-        totalPages:
-          type: integer
-        number:
-          type: integer
   securitySchemes:
     BearerAuth:
       type: http
