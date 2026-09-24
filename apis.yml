@@ -124,8 +124,6 @@ apis:
     url: json-ld/siemens-mindsphere-context.jsonld
   - type: Vocabulary
     url: vocabulary/siemens-mindsphere-vocabulary.yml
-  - type: GraphQL
-    url: graphql/siemens-mindsphere-graphql.md
   - type: Documentation
     url: >-
       https://documentation.mindsphere.io/MindSphere/apis/iot-iottimeseries/api-iottimeseries-overview.html
@@ -153,8 +151,6 @@ apis:
     url: json-ld/siemens-mindsphere-context.jsonld
   - type: Vocabulary
     url: vocabulary/siemens-mindsphere-vocabulary.yml
-  - type: GraphQL
-    url: graphql/siemens-mindsphere-graphql.md
   - type: Documentation
     url: >-
       https://documentation.mindsphere.io/MindSphere/apis/iot-iottimeseries/api-iottimeseries-overview.html
@@ -182,8 +178,6 @@ apis:
     url: json-ld/siemens-mindsphere-context.jsonld
   - type: Vocabulary
     url: vocabulary/siemens-mindsphere-vocabulary.yml
-  - type: GraphQL
-    url: graphql/siemens-mindsphere-graphql.md
   - type: Documentation
     url: >-
       https://documentation.mindsphere.io/MindSphere/apis/iot-iottimeseries/api-iottimeseries-overview.html
@@ -211,14 +205,12 @@ apis:
     url: json-ld/siemens-mindsphere-context.jsonld
   - type: Vocabulary
     url: vocabulary/siemens-mindsphere-vocabulary.yml
-  - type: GraphQL
-    url: graphql/siemens-mindsphere-graphql.md
   - type: Documentation
     url: >-
       https://documentation.mindsphere.io/MindSphere/apis/iot-iottimeseries/api-iottimeseries-overview.html
   - type: JSONSchema
     url: json-schema/siemens-mindsphere-timeseries-schema.json
-name: Siemens MindSphere
+name: Siemens Insights Hub (MindSphere)
 tags:
 - IoT
 - Industrial
@@ -300,3 +292,4 @@ maintainers:
 specificationVersion: '0.23'
 x-parent: siemens
 x-relationship: product
+x-former-name: Siemens MindSphere
