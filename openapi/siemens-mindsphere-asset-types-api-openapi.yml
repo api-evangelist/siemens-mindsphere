@@ -83,18 +83,43 @@ paths:
           description: Not found
 components:
   schemas:
-    AssetTypeListResponse:
+    VariableDefinition:
       type: object
+      required:
+      - name
+      - dataType
       properties:
-        _embedded:
-          type: object
-          properties:
-            assetTypes:
-              type: array
-              items:
-                $ref: '#/components/schemas/AssetType'
-        page:
-          $ref: '#/components/schemas/PageMetadata'
+        name:
+          type: string
+        dataType:
+          type: string
+          enum:
+          - BOOLEAN
+          - INT
+          - LONG
+          - DOUBLE
+          - STRING
+          - BIG_STRING
+          - TIMESTAMP
+        unit:
+          type: string
+          description: Unit of measurement (e.g., "°C", "bar", "rpm")
+        searchable:
+          type: boolean
+          default: false
+        length:
+          type: integer
+          description: Max length for STRING type
+        defaultValue:
+          description: Default value for the variable
+          oneOf:
+          - type: number
+          - type: string
+          - type: boolean
+          - type: 'null'
+        qualityCode:
+          type: boolean
+          description: Whether OPC-UA quality codes are supported
     AssetType:
       type: object
       properties:
@@ -140,43 +165,18 @@ components:
           type: integer
         number:
           type: integer
-    VariableDefinition:
+    AssetTypeListResponse:
       type: object
-      required:
-      - name
-      - dataType
       properties:
-        name:
-          type: string
-        dataType:
-          type: string
-          enum:
-          - BOOLEAN
-          - INT
-          - LONG
-          - DOUBLE
-          - STRING
-          - BIG_STRING
-          - TIMESTAMP
-        unit:
-          type: string
-          description: Unit of measurement (e.g., "°C", "bar", "rpm")
-        searchable:
-          type: boolean
-          default: false
-        length:
-          type: integer
-          description: Max length for STRING type
-        defaultValue:
-          description: Default value for the variable
-          oneOf:
-          - type: number
-          - type: string
-          - type: boolean
-          - type: 'null'
-        qualityCode:
-          type: boolean
-          description: Whether OPC-UA quality codes are supported
+        _embedded:
+          type: object
+          properties:
+            assetTypes:
+              type: array
+              items:
+                $ref: '#/components/schemas/AssetType'
+        page:
+          $ref: '#/components/schemas/PageMetadata'
     AssetTypeCreate:
       type: object
       required:

@@ -184,7 +184,7 @@ apis:
   - type: JSONSchema
     url: json-schema/siemens-mindsphere-timeseries-schema.json
 - aid: siemens-mindsphere:siemens-mindsphere-time-series-api
-  name: Siemens MindSphere Time Series API
+  name: Siemens Insights Hub (MindSphere) Time Series API
   description: Time-series data read and write operations
   humanURL: >-
     https://documentation.mindsphere.io/MindSphere/apis/core-identitymanagement/api-identitymanagement-overview.html
@@ -222,15 +222,19 @@ tags:
 kind: contract
 deliveryModel:
   model: saas
-  open_source: false
+  license_evidence:
+    not_product:
+    - mindsphere/mindconnect-nodejs
+  open_source: unknown
   commercial: true
   callable_host: true
   label: Hosted service · you call their endpoint
-  confidence: high
+  confidence: low
   source:
   - openapi
   - pricing
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: enterprise
