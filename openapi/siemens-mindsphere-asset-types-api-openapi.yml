@@ -83,6 +83,29 @@ paths:
           description: Not found
 components:
   schemas:
+    PageMetadata:
+      type: object
+      properties:
+        size:
+          type: integer
+        totalElements:
+          type: integer
+        totalPages:
+          type: integer
+        number:
+          type: integer
+    AssetTypeListResponse:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            assetTypes:
+              type: array
+              items:
+                $ref: '#/components/schemas/AssetType'
+        page:
+          $ref: '#/components/schemas/PageMetadata'
     VariableDefinition:
       type: object
       required:
@@ -120,63 +143,6 @@ components:
         qualityCode:
           type: boolean
           description: Whether OPC-UA quality codes are supported
-    AssetType:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Asset type identifier (tenant.name)
-        name:
-          type: string
-        description:
-          type: string
-        parentTypeId:
-          type: string
-          description: Parent asset type for inheritance
-        instantiable:
-          type: boolean
-          description: Whether assets can be directly instantiated from this type
-        scope:
-          type: string
-          enum:
-          - private
-          - public
-        aspects:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              aspectTypeId:
-                type: string
-        variables:
-          type: array
-          items:
-            $ref: '#/components/schemas/VariableDefinition'
-    PageMetadata:
-      type: object
-      properties:
-        size:
-          type: integer
-        totalElements:
-          type: integer
-        totalPages:
-          type: integer
-        number:
-          type: integer
-    AssetTypeListResponse:
-      type: object
-      properties:
-        _embedded:
-          type: object
-          properties:
-            assetTypes:
-              type: array
-              items:
-                $ref: '#/components/schemas/AssetType'
-        page:
-          $ref: '#/components/schemas/PageMetadata'
     AssetTypeCreate:
       type: object
       required:
@@ -203,6 +169,40 @@ components:
             required:
             - name
             - aspectTypeId
+            properties:
+              name:
+                type: string
+              aspectTypeId:
+                type: string
+        variables:
+          type: array
+          items:
+            $ref: '#/components/schemas/VariableDefinition'
+    AssetType:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Asset type identifier (tenant.name)
+        name:
+          type: string
+        description:
+          type: string
+        parentTypeId:
+          type: string
+          description: Parent asset type for inheritance
+        instantiable:
+          type: boolean
+          description: Whether assets can be directly instantiated from this type
+        scope:
+          type: string
+          enum:
+          - private
+          - public
+        aspects:
+          type: array
+          items:
+            type: object
             properties:
               name:
                 type: string

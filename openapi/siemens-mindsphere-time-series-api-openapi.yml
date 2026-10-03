@@ -218,39 +218,6 @@ components:
         format: uuid
       example: 5d7e59d0-8c94-4bce-8a0c-3a7fcc9a1234
   schemas:
-    TimeseriesInput:
-      type: object
-      required:
-      - assetId
-      - aspectName
-      - data
-      properties:
-        assetId:
-          type: string
-          format: uuid
-        aspectName:
-          type: string
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TimeseriesDataPoint'
-    TimeseriesDataPoint:
-      type: object
-      required:
-      - _time
-      properties:
-        _time:
-          type: string
-          format: date-time
-          description: ISO 8601 UTC timestamp for the data point
-          example: '2026-01-01T00:00:00.000Z'
-      additionalProperties:
-        description: Variable values keyed by variable name. Variable types are defined in the aspect configuration (DOUBLE, LONG, BOOLEAN, STRING, BIG_STRING, INT, TIMESTAMP).
-        oneOf:
-        - type: number
-        - type: boolean
-        - type: string
-        - type: 'null'
     ErrorResponse:
       type: object
       properties:
@@ -268,6 +235,39 @@ components:
                 type: string
               message:
                 type: string
+    TimeseriesDataPoint:
+      type: object
+      required:
+      - _time
+      properties:
+        _time:
+          type: string
+          format: date-time
+          description: ISO 8601 UTC timestamp for the data point
+          example: '2026-01-01T00:00:00.000Z'
+      additionalProperties:
+        description: Variable values keyed by variable name. Variable types are defined in the aspect configuration (DOUBLE, LONG, BOOLEAN, STRING, BIG_STRING, INT, TIMESTAMP).
+        oneOf:
+        - type: number
+        - type: boolean
+        - type: string
+        - type: 'null'
+    TimeseriesInput:
+      type: object
+      required:
+      - assetId
+      - aspectName
+      - data
+      properties:
+        assetId:
+          type: string
+          format: uuid
+        aspectName:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimeseriesDataPoint'
   securitySchemes:
     BearerAuth:
       type: http
