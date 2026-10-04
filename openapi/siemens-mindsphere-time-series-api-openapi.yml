@@ -199,25 +199,23 @@ paths:
         '403':
           description: Forbidden
 components:
-  parameters:
-    AspectName:
-      name: aspectName
-      in: path
-      required: true
-      description: Aspect name (must match asset type aspect configuration)
-      schema:
-        type: string
-      example: EnvironmentData
-    AssetId:
-      name: assetId
-      in: path
-      required: true
-      description: Unique MindSphere asset identifier (UUID)
-      schema:
-        type: string
-        format: uuid
-      example: 5d7e59d0-8c94-4bce-8a0c-3a7fcc9a1234
   schemas:
+    TimeseriesInput:
+      type: object
+      required:
+      - assetId
+      - aspectName
+      - data
+      properties:
+        assetId:
+          type: string
+          format: uuid
+        aspectName:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimeseriesDataPoint'
     ErrorResponse:
       type: object
       properties:
@@ -252,22 +250,24 @@ components:
         - type: boolean
         - type: string
         - type: 'null'
-    TimeseriesInput:
-      type: object
-      required:
-      - assetId
-      - aspectName
-      - data
-      properties:
-        assetId:
-          type: string
-          format: uuid
-        aspectName:
-          type: string
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TimeseriesDataPoint'
+  parameters:
+    AspectName:
+      name: aspectName
+      in: path
+      required: true
+      description: Aspect name (must match asset type aspect configuration)
+      schema:
+        type: string
+      example: EnvironmentData
+    AssetId:
+      name: assetId
+      in: path
+      required: true
+      description: Unique MindSphere asset identifier (UUID)
+      schema:
+        type: string
+        format: uuid
+      example: 5d7e59d0-8c94-4bce-8a0c-3a7fcc9a1234
   securitySchemes:
     BearerAuth:
       type: http
