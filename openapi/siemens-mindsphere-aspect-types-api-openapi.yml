@@ -60,6 +60,17 @@ paths:
                 $ref: '#/components/schemas/AspectType'
 components:
   schemas:
+    PageMetadata:
+      type: object
+      properties:
+        size:
+          type: integer
+        totalElements:
+          type: integer
+        totalPages:
+          type: integer
+        number:
+          type: integer
     AspectTypeListResponse:
       type: object
       properties:
@@ -109,31 +120,6 @@ components:
         qualityCode:
           type: boolean
           description: Whether OPC-UA quality codes are supported
-    AspectType:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Aspect type identifier (tenant.name)
-        name:
-          type: string
-        description:
-          type: string
-        category:
-          type: string
-          enum:
-          - static
-          - dynamic
-          description: static=configuration data, dynamic=time-series telemetry
-        scope:
-          type: string
-          enum:
-          - private
-          - public
-        variables:
-          type: array
-          items:
-            $ref: '#/components/schemas/VariableDefinition'
     AspectTypeCreate:
       type: object
       required:
@@ -161,17 +147,31 @@ components:
           minItems: 1
           items:
             $ref: '#/components/schemas/VariableDefinition'
-    PageMetadata:
+    AspectType:
       type: object
       properties:
-        size:
-          type: integer
-        totalElements:
-          type: integer
-        totalPages:
-          type: integer
-        number:
-          type: integer
+        id:
+          type: string
+          description: Aspect type identifier (tenant.name)
+        name:
+          type: string
+        description:
+          type: string
+        category:
+          type: string
+          enum:
+          - static
+          - dynamic
+          description: static=configuration data, dynamic=time-series telemetry
+        scope:
+          type: string
+          enum:
+          - private
+          - public
+        variables:
+          type: array
+          items:
+            $ref: '#/components/schemas/VariableDefinition'
   securitySchemes:
     BearerAuth:
       type: http

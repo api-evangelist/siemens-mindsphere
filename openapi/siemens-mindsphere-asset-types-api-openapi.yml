@@ -83,22 +83,20 @@ paths:
           description: Not found
 components:
   schemas:
-    AssetType:
+    AssetTypeCreate:
       type: object
+      required:
+      - name
       properties:
-        id:
-          type: string
-          description: Asset type identifier (tenant.name)
         name:
           type: string
         description:
           type: string
         parentTypeId:
           type: string
-          description: Parent asset type for inheritance
         instantiable:
           type: boolean
-          description: Whether assets can be directly instantiated from this type
+          default: true
         scope:
           type: string
           enum:
@@ -108,6 +106,9 @@ components:
           type: array
           items:
             type: object
+            required:
+            - name
+            - aspectTypeId
             properties:
               name:
                 type: string
@@ -129,6 +130,17 @@ components:
                 $ref: '#/components/schemas/AssetType'
         page:
           $ref: '#/components/schemas/PageMetadata'
+    PageMetadata:
+      type: object
+      properties:
+        size:
+          type: integer
+        totalElements:
+          type: integer
+        totalPages:
+          type: integer
+        number:
+          type: integer
     VariableDefinition:
       type: object
       required:
@@ -166,31 +178,22 @@ components:
         qualityCode:
           type: boolean
           description: Whether OPC-UA quality codes are supported
-    PageMetadata:
+    AssetType:
       type: object
       properties:
-        size:
-          type: integer
-        totalElements:
-          type: integer
-        totalPages:
-          type: integer
-        number:
-          type: integer
-    AssetTypeCreate:
-      type: object
-      required:
-      - name
-      properties:
+        id:
+          type: string
+          description: Asset type identifier (tenant.name)
         name:
           type: string
         description:
           type: string
         parentTypeId:
           type: string
+          description: Parent asset type for inheritance
         instantiable:
           type: boolean
-          default: true
+          description: Whether assets can be directly instantiated from this type
         scope:
           type: string
           enum:
@@ -200,9 +203,6 @@ components:
           type: array
           items:
             type: object
-            required:
-            - name
-            - aspectTypeId
             properties:
               name:
                 type: string
